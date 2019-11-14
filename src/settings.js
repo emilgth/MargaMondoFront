@@ -1,1 +1,2 @@
-export const backend = "http://localhost:8080/securitystarter";
+export const backend = "https://emilgth.dk/security";
+export const endpointURL = "https://emilgth.dk/security/api/info/luke";
