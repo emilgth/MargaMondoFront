@@ -31,9 +31,8 @@ function apiFacade() {
 			})
 	};
 
-	const fetchData = (user) => {
-		const options = makeOptions("GET", true); //True add's the token
-		return fetch(backend + "/api/info/" + user, options).then(handleHttpErrors);
+	const fetchAllFlights = () => {
+		return fetch(backend + "/api/flights/all").then(handleHttpErrors);
 	};
 
 	const fetchApiData = () => {
@@ -64,7 +63,7 @@ function apiFacade() {
 		loggedIn,
 		login,
 		logout,
-		fetchData,
+		fetchAllFlights,
 		fetchApiData
 	}
 }

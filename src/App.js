@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import facade from "./apiFacade";
+import {FlightsTable} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 
 function LogIn({login}) {
@@ -60,7 +61,7 @@ const ApiData = ({user}) => {
 };
 
 const Welcome = () => {
-	return "Welcome";
+	return "Welcome to MargaMondo";
 };
 
 const Header = ({loggedIn}) => {
@@ -85,25 +86,28 @@ function App() {
 	};
 
 	return (
-		<Router>
-			<Header loggedIn={loggedIn}/>
-			<Switch>
-				<Route exact path={"/"}>
-					<Welcome/>
-				</Route>
+		<div>
+			<Router>
+				<Header loggedIn={loggedIn}/>
+				<Switch>
+					<Route exact path={"/"}>
+						<Welcome/>
+					</Route>
 
-				<Route path={"/user-page"}>
-					<div className={"container mt-5"}>
-						{!loggedIn ? (<LogIn login={login}/>) :
-							(<div>
-								<LoggedIn user={user}/>
-								<button className={"btn btn-primary"} onClick={logout}>Logout</button>
-								<ApiData/>
-							</div>)}
-					</div>
-				</Route>
-			</Switch>
-		</Router>
+					<Route path={"/user-page"}>
+						<div className={"container mt-5"}>
+							{!loggedIn ? (<LogIn login={login}/>) :
+								(<div>
+									<LoggedIn user={user}/>
+									<button className={"btn btn-primary"} onClick={logout}>Logout</button>
+									<ApiData/>
+								</div>)}
+						</div>
+					</Route>
+				</Switch>
+				<FlightsTable/>
+			</Router>
+		</div>
 
 	);
 }
