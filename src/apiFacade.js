@@ -14,22 +14,6 @@ function apiFacade() {
 	const getToken = () => {
 		return localStorage.getItem('jwtToken')
 	};
-	const loggedIn = () => {
-		const loggedIn = getToken() != null;
-		return loggedIn;
-	};
-	const logout = () => {
-		localStorage.removeItem("jwtToken");
-	};
-
-	const login = (user, password) => {
-		const options = makeOptions("POST", true, {username: user, password: password});
-		return fetch(backend + "/api/login", options)
-			.then(handleHttpErrors)
-			.then(res => {
-				setToken(res.token)
-			})
-	};
 
 	const fetchAllFlights = () => {
 		return fetch(backend + "/api/flights/all").then(handleHttpErrors);
@@ -48,9 +32,6 @@ function apiFacade() {
 				'Accept': 'application/json',
 			}
 		};
-		if (addToken && loggedIn()) {
-			opts.headers["x-access-token"] = getToken();
-		}
 		if (body) {
 			opts.body = JSON.stringify(body);
 		}
@@ -60,9 +41,6 @@ function apiFacade() {
 		makeOptions,
 		setToken,
 		getToken,
-		loggedIn,
-		login,
-		logout,
 		fetchAllFlights,
 		fetchApiData
 	}

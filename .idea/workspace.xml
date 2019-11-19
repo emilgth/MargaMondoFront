@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FlightsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apiFacade.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apiFacade.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +52,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -98,6 +98,7 @@
       <workItem from="1573465104050" duration="688000" />
       <workItem from="1573553616492" duration="10667000" />
       <workItem from="1573729757455" duration="7523000" />
+      <workItem from="1574082954822" duration="2670000" />
     </task>
     <task id="LOCAL-00001" summary="admin login FIXED">
       <created>1573555342081</created>
@@ -120,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573733503429</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="implemented a simple table for all flights and a fetch method&#10;currently only displays dummy data">
+      <created>1574167222788</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574167222788</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +149,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="admin login FIXED" />
-    <option name="LAST_COMMIT_MESSAGE" value="admin login FIXED" />
+    <MESSAGE value="implemented a simple table for all flights and a fetch method&#10;currently only displays dummy data" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented a simple table for all flights and a fetch method&#10;currently only displays dummy data" />
   </component>
 </project>

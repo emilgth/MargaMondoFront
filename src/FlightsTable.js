@@ -2,9 +2,8 @@ import React, {useEffect, useState} from "react"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import filterFactory, {textFilter} from 'react-bootstrap-table2-filter';
+import filterFactory from 'react-bootstrap-table2-filter';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import facade from "./apiFacade";
 
 export const FlightsTable = () => {
 	const [flights, setFlights] = useState([]);
@@ -36,31 +35,36 @@ export const FlightsTable = () => {
 		// setFlights(facade.fetchAllFlights().then(res => res.json()));
 		// setMsg("");
 
+		//todo fetch data from API
 		setFlights([
-			{departureLocation: 'Copenhagen',
-			arrivalLocation: 'Paris',
-			departureTime: 213432,
-			arrivalTime: 12391238,
-			flightDuration: 231355,
-			price: 124,
-			airline: "FcukLnine"},
-			{departureLocation: 'Copenhagen',
+			{
+				departureLocation: 'Copenhagen',
 				arrivalLocation: 'Paris',
 				departureTime: 213432,
 				arrivalTime: 12391238,
 				flightDuration: 231355,
 				price: 124,
-				airline: "FcukLnine"},
-			{departureLocation: 'Copenhagen',
+				airline: "FcukLnine"
+			},
+			{
+				departureLocation: 'Copenhagen',
 				arrivalLocation: 'Paris',
 				departureTime: 213432,
 				arrivalTime: 12391238,
 				flightDuration: 231355,
 				price: 124,
-				airline: "FcukLnine"}]);
+				airline: "FcukLnine"
+			},
+			{
+				departureLocation: 'Copenhagen',
+				arrivalLocation: 'Paris',
+				departureTime: 213432,
+				arrivalTime: 12391238,
+				flightDuration: 231355,
+				price: 124,
+				airline: "FcukLnine"
+			}]);
 	}, []);
-
-
 
 	return (
 		<div>
