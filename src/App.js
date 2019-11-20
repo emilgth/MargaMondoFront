@@ -1,6 +1,7 @@
 import React from "react"
 import {FlightsTable} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
+import {FlightSearch} from "./FlightSearch";
 
 const Welcome = () => {
 	return "Welcome to MargaMondo";
@@ -23,6 +24,7 @@ function App() {
 						<Welcome/>
 					</Route>
 				</Switch>
+				<FlightSearch/>
 				<FlightsTable/>
 			</Router>
 		</div>
