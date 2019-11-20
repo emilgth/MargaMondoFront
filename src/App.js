@@ -1,7 +1,8 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import {FlightsTable} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import {FlightSearch} from "./FlightSearch";
+import facade from "./apiFacade";
 
 const Welcome = () => {
 	return "Welcome to MargaMondo";
@@ -15,6 +16,12 @@ const Header = () => {
 };
 
 function App() {
+	const [flights, setFlights] = useState([]);
+
+	useEffect(() => {
+		facade.fetchAllFlights().then(data => setFlights(data));
+	}, []);
+
 	return (
 		<div>
 			<Router>
@@ -24,8 +31,8 @@ function App() {
 						<Welcome/>
 					</Route>
 				</Switch>
-				<FlightSearch/>
-				<FlightsTable/>
+				<FlightSearch setFlights={setFlights}/>
+				<FlightsTable flights={flights}/>
 			</Router>
 		</div>
 	);

@@ -19,6 +19,12 @@ function apiFacade() {
 		return fetch(backend + "/api/flights/all").then(handleHttpErrors);
 	};
 
+	const searchFlights = (searchData) => {
+		const options = makeOptions("POST", false, searchData);
+		console.log(options);
+		return fetch(backend + "/api/flights/search", options).then(handleHttpErrors);
+	};
+
 	const fetchApiData = () => {
 		const options = makeOptions("GET", true);
 		return fetch(endpointURL, options).then(handleHttpErrors);
@@ -42,7 +48,8 @@ function apiFacade() {
 		setToken,
 		getToken,
 		fetchAllFlights,
-		fetchApiData
+		fetchApiData,
+		searchFlights
 	}
 }
 

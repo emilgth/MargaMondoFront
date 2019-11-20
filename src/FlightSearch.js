@@ -1,13 +1,17 @@
 import React, {useState} from "react";
+import apiFacade from "./apiFacade";
 
-export const FlightSearch = () => {
-	const [searchData, setSearchData] = useState({destination: "", arrival: "", dateTime: ""});
+export const FlightSearch = ({setFlights}) => {
+	const [searchData, setSearchData] = useState({destination: "", departure: "", dateTime: ""});
 	return (
 		<div>
-	<input onChange={event => setSearchData({...searchData, destination: event.target.value})}/>
-	<input onChange={event => setSearchData({...searchData, arrival: event.target.value})}/>
+	<input placeholder={"Destination"} onChange={event => setSearchData({...searchData, destination: event.target.value})}/>
+	<input placeholder={"Departure"} onChange={event => setSearchData({...searchData, departure: event.target.value})}/>
 	<input onChange={event => setSearchData({...searchData, dateTime: event.target.value})} type={"date"}/>
-	<button onClick={() => console.log(searchData)}>search</button>
+	<button onClick={() => apiFacade.searchFlights(searchData).then(data => {
+		console.log(data);
+		setFlights(data)
+	})}>search</button>
 		</div>
 	)
 };
