@@ -16,21 +16,32 @@ export const FlightsTable = ({flights}) => {
 		text: 'Arrival Location',
 	}, {
 		dataField: 'departureTime',
-		text: 'Departure Time'
+		text: 'Departure Time',
+		sort: true,
+
+		sortFunc: (date1, date2, order, dataField) => {
+			let aa = new Date(date1);
+			let bb = new Date(date2);
+			if (order === 'asc') {
+				return bb - aa;
+			}
+			return aa - bb; // desc
+		}
 	}, {
 		dataField: 'arrivalTime',
-		text: 'Arrival Time'
+		text: 'Arrival Time',
+
 	}, {
 		dataField: 'flightDuration',
 		text: 'Flight Duration'
 	}, {
 		dataField: 'price',
-		text: 'Price'
+		text: 'Price',
+		sort: true
 	}, {
 		dataField: 'airline',
 		text: 'Airline'
 	}];
-
 
 	return (
 		<div>
