@@ -6,9 +6,8 @@ import filterFactory from 'react-bootstrap-table2-filter';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import facade from "./apiFacade";
 
-export const FlightsTable = () => {
-	const [flights, setFlights] = useState([]);
-	const [msg, setMsg] = useState("");
+export const FlightsTable = ({flights}) => {
+
 	const columns = [{
 		dataField: 'departureAirportName',
 		text: 'Departure Location',
@@ -17,66 +16,41 @@ export const FlightsTable = () => {
 		text: 'Arrival Location',
 	}, {
 		dataField: 'departureTime',
-		text: 'Departure Time'
+		text: 'Departure Time',
+		sort: true,
+
+		sortFunc: (date1, date2, order, dataField) => {
+			let aa = new Date(date1);
+			let bb = new Date(date2);
+			if (order === 'asc') {
+				return bb - aa;
+			}
+			return aa - bb; // desc
+		}
 	}, {
 		dataField: 'arrivalTime',
-		text: 'Arrival Time'
+		text: 'Arrival Time',
+
 	}, {
 		dataField: 'flightDuration',
 		text: 'Flight Duration'
 	}, {
 		dataField: 'price',
-		text: 'Price'
+		text: 'Price',
+		sort: true
 	}, {
 		dataField: 'airline',
 		text: 'Airline'
 	}];
-	useEffect(() => {
-		// setMsg("Loading...");
-		facade.fetchAllFlights().then(data => setFlights(data));
-		// setMsg("");
-
-		//todo fetch data from API
-		// setFlights([
-		// 	{
-		// 		departureLocation: 'Copenhagen',
-		// 		arrivalLocation: 'Paris',
-		// 		departureTime: 213432,
-		// 		arrivalTime: 12391238,
-		// 		flightDuration: 231355,
-		// 		price: 124,
-		// 		airline: "FcukLnine"
-		// 	},
-		// 	{
-		// 		departureLocation: 'Copenhagen',
-		// 		arrivalLocation: 'Paris',
-		// 		departureTime: 213432,
-		// 		arrivalTime: 12391238,
-		// 		flightDuration: 231355,
-		// 		price: 124,
-		// 		airline: "FcukLnine"
-		// 	},
-		// 	{
-		// 		departureLocation: 'Copenhagen',
-		// 		arrivalLocation: 'Paris',
-		// 		departureTime: 213432,
-		// 		arrivalTime: 12391238,
-		// 		flightDuration: 231355,
-		// 		price: 124,
-		// 		airline: "FcukLnine"
-		// 	}]);
-	}, []);
 
 	return (
 		<div>
 			<h2>All Flights</h2>
-			{msg}
-			{console.log(flights)}
 			<BootstrapTable
 				striped
 				hover
 				bootstrap4
-				keyField='id'
+				keyField={"index"}
 				data={flights}
 				columns={columns}
 				filter={filterFactory()}
