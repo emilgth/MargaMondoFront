@@ -74,10 +74,16 @@ function App() {
 		<div>
 			<Router>
 				<Header/>
-				{airlines.map(airline => <div><input type={"checkbox"} onChange={handleCheckbox} name={airline.airline}
-				                                     checked={airline.checked}/>{airline.airline}<br/>
+				{/*todo refactor into separate component */}
+				{airlines.map(airline => <div className={"form-check-inline"}><input id={airline}
+				                                                                     className={"form-check-input"}
+				                                                                     type={"checkbox"}
+				                                                                     onChange={handleCheckbox}
+				                                                                     name={airline.airline}
+				                                                                     checked={airline.checked}/>
+					<label className={"form-check-label"}>{airline.airline}</label>
 				</div>)}
-				<button onClick={() => {
+				<button className={"btn btn-primary btn-sm"} onClick={() => {
 					setFlights(originalFlights);
 					const distinct = (value, index, self) => {
 						return self.indexOf(value) === index;
@@ -90,6 +96,7 @@ function App() {
 					setAirlines(airlines);
 				}}>Reset
 				</button>
+				<br/>
 
 				<Switch>
 					<Route exact path={"/"}>
