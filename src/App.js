@@ -3,7 +3,7 @@ import {FlightsTable} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import {FlightSearch} from "./FlightSearch";
 import facade from "./apiFacade";
-
+//Welcome to the jungle
 const Welcome = () => {
 	return "Welcome to MargaMondo";
 };
