@@ -16,7 +16,7 @@ function apiFacade() {
 	};
 
 	const fetchAllFlights = () => {
-		return fetch(backend + "/api/flights/all").then(handleHttpErrors);
+		return fetch(backend + "/api/flights/global").then(handleHttpErrors);
 	};
 
 	const searchFlights = (searchData) => {
