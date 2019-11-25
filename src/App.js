@@ -20,6 +20,7 @@ function App() {
 
 	useEffect(() => {
 		facade.fetchAllFlights().then(data => {
+			//todo: fix typo in the global array >:)
 			let combinedArrays = [...data[0], ...data[1]];
 			let flightsFormattedTime = combinedArrays.map(flight => {
 				flight.flightDuration = msToTime(flight.flightDuration);
