@@ -59,7 +59,7 @@ function App() {
 		});
 		setAirlinesUnchecked(airlinesToFilter);
 
-		let newFlights = flights.filter(flight => {
+		let newFlights = originalFlights.filter(flight => {
 			//
 			let airlineNamesOnly = airlinesToFilter.map(airline => airline.airline);
 			if (!airlineNamesOnly.includes(flight.airline)) {
