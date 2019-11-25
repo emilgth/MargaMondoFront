@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {FlightsTable} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import {FlightSearch} from "./FlightSearch";
@@ -19,8 +19,26 @@ function App() {
 	const [flights, setFlights] = useState([]);
 
 	useEffect(() => {
-		facade.fetchAllFlights().then(data => setFlights(data));
+		facade.fetchAllFlights().then(data => {
+			let flightsFormattedTime = data.map(flight => {
+				flight.flightDuration = msToTime(flight.flightDuration);
+				return flight;
+			});
+			setFlights(flightsFormattedTime)
+		});
 	}, []);
+
+	function msToTime(duration) {
+		let seconds = Math.floor((duration / 1000) % 60),
+			minutes = Math.floor((duration / (1000 * 60)) % 60),
+			hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+		hours = (hours < 10) ? "0" + hours : hours;
+		minutes = (minutes < 10) ? "0" + minutes : minutes;
+		seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+		return hours + ":" + minutes + ":" + seconds;
+	}
 
 	return (
 		<div>
