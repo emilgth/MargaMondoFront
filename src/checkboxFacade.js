@@ -132,12 +132,21 @@ export const RenderClassesCheckboxes = ({flightClasses, handleClassCheckbox, set
             const distinct = (value, index, self) => {
                 return self.indexOf(value) === index;
             };
-            const allFlightClasses = originalFlights.map(data => data.flightClass);
-            const classesAlmost = allFlightClasses.filter(distinct);
-            const flightClassses = classesAlmost.map(flightClass => {
+            const allFlightClasses = [];
+            originalFlights.map(data => {
+                if (data.flightClass !== undefined) {
+                    allFlightClasses.push(data.flightClass);
+                }
+            });
+
+            const flightClassesAlmost = allFlightClasses.filter(distinct);
+
+            //adds a 'checked' property to the list of airlines
+
+            const flightClasses = flightClassesAlmost.map(flightClass => {
                 return {flightClass: flightClass, checked: true}
             });
-            setFlightClasses(flightClassses);
+            setFlightClasses(flightClasses);
         }}>Reset
         </button>
         <br/>

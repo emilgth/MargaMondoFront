@@ -4,7 +4,6 @@
     <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlightsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightsTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/checkboxFacade.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/checkboxFacade.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574802236432</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="flightClass checkboxes implemented and minor fixes :)">
+      <created>1574805151307</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1574805151307</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,13 +226,14 @@
     <MESSAGE value="add class to flights" />
     <MESSAGE value="extracted airlines checkbox function" />
     <MESSAGE value="extracted airlines checkbox renderblock thing" />
-    <option name="LAST_COMMIT_MESSAGE" value="extracted airlines checkbox renderblock thing" />
+    <MESSAGE value="flightClass checkboxes implemented and minor fixes :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="flightClass checkboxes implemented and minor fixes :)" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574802235758">
+    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574805150600">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574802235758" />
+    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574805150600" />
     <state x="1220" y="267" key="FileChooserDialogImpl" timestamp="1574779207154">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

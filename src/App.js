@@ -32,7 +32,7 @@ function App() {
 
     useEffect(() => {
         facade.fetchAllFlights().then(data => {
-            for (let flight of data[0]) {
+            for (let flight of data[1]) {
                 flight.id += 1000
             }
             let combinedArrays = [...data[0], ...data[1]];
@@ -93,7 +93,7 @@ function App() {
                 <Header/>
                 {/*todo refactor into separate component */}
                 {renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
-                <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox} setFlights={setFlights} originalFlights={originalFlights} setReturnFlights={setReturnFlights} originalReturnFlights={originalReturnFlights} setClasses={setFlightClasses} />
+                <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox} setFlights={setFlights} originalFlights={originalFlights} setReturnFlights={setReturnFlights} originalReturnFlights={originalReturnFlights} setFlightClasses={setFlightClasses} />
                 <Switch>
                     <Route exact path={"/"}>
                         <Welcome/>
