@@ -18,10 +18,11 @@ const Header = () => {
 };
 
 function App() {
-    const [returnFlights, setReturnFlights] = useState([]);
     const [returnChecked, setReturnChecked] = useState("off");
 	const [originalFlights, setOriginalFlights] = useState([]); //this is the list of flights retrieved by the fetch function, it shouldn't be altered by anything, but the fetch function
+	const [originalReturnFlights, setOriginalReturnFlights] = useState([]);
 	const [flights, setFlights] = useState(originalFlights); //this is the list of flights used to actually display the list, and the one altered by various functions
+	const [returnFlights, setReturnFlights] = useState([]);
 	const [airlines, setAirlines] = useState([]); //this is used to display the checkboxes
 	const [airlinesUnchecked, setAirlinesUnchecked] = useState([]);
 
@@ -34,11 +35,12 @@ function App() {
 			});
 			setOriginalFlights(flightsFormattedTime);
 			setFlights(flightsFormattedTime);
+
 			//pull out the distinct airlines from the list of flights
 			const distinct = (value, index, self) => {
 				return self.indexOf(value) === index;
 			};
-			const allAirlines = data.map(data => data.airline);
+			const allAirlines = combinedArrays.map(data => data.airline);
 			const airlinesAlmost = allAirlines.filter(distinct);
 			//adds a 'checked' property to the list of airlines
 			const airlines = airlinesAlmost.map(airline => {
@@ -89,6 +91,16 @@ function App() {
 		});
 
 		setFlights(newFlights);
+
+		let newReturnFlights = originalReturnFlights.filter(flight => {
+			//
+			let airlineNamesOnly = airlinesToFilter.map(airline => airline.airline);
+			if (!airlineNamesOnly.includes(flight.airline)) {
+				return flight;
+			}
+		});
+
+		setReturnFlights(newReturnFlights);
 	};
 
 	return (
@@ -96,16 +108,18 @@ function App() {
 			<Router>
 				<Header/>
 				{/*todo refactor into separate component */}
-				{airlines.map(airline => <div key={airline.airline} className={"form-check-inline"}><input  id={airline}
-				                                                                     className={"form-check-input"}
-				                                                                     type={"checkbox"}
-				                                                                     onChange={handleCheckbox}
-				                                                                     name={airline.airline}
-				                                                                     checked={airline.checked}/>
+				{console.log(airlines)}
+				{airlines.map(airline => <div key={airline.airline} className={"form-check-inline"}><input id={airline}
+																										   className={"form-check-input"}
+																										   type={"checkbox"}
+																										   onChange={handleCheckbox}
+																										   name={airline.airline}
+																										   checked={airline.checked}/>
 					<label className={"form-check-label"}>{airline.airline}</label>
 				</div>)}
 				<button className={"btn btn-primary btn-sm"} onClick={() => {
 					setFlights(originalFlights);
+					setReturnFlights(originalReturnFlights);
 					const distinct = (value, index, self) => {
 						return self.indexOf(value) === index;
 					};
@@ -130,18 +144,16 @@ function App() {
 							ticket
 						</label>
 						{returnChecked === "on"
-							? <FlightSearchReturn setFlights={setFlights} setReturnFlights = {setReturnFlights}/>
-							: <FlightSearch setFlights={setFlights}/>}
+							? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights} setReturnFlights={setReturnFlights} setOriginalReturnFlights={setOriginalReturnFlights}/>
+							: <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
 						{returnChecked === "on"
-							? <FlightsTableReturn flights={flights} returnFlights = {returnFlights}/>
+							? <FlightsTableReturn flights={flights} returnFlights={returnFlights}/>
 							: <FlightsTable flights={flights}/>}
 					</Route>
 					<Route path="/redirecting">
 						<Redirection/>
 					</Route>
 				</Switch>
-				<FlightSearch setFlights={setFlights}/>
-				<FlightsTable flights={flights}/>
 			</Router>
 		</div>
 	);
