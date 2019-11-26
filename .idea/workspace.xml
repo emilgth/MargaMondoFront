@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="cleaned up code, removed login functionality">
+    <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,14 +20,20 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="DevBranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1TCGGZ8VSxeynSyv0SxrqjChtTR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -41,19 +47,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
@@ -83,8 +77,21 @@
       <list>
         <item itemvalue="npm.build" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -107,6 +114,9 @@
       <workItem from="1574200753311" duration="4000" />
       <workItem from="1574272741108" duration="2703000" />
       <workItem from="1574668563883" duration="691000" />
+      <workItem from="1574712339806" duration="99000" />
+      <workItem from="1574713374005" duration="1141000" />
+      <workItem from="1574759187445" duration="365000" />
     </task>
     <task id="LOCAL-00001" summary="admin login FIXED">
       <created>1573555342081</created>
@@ -136,7 +146,28 @@
       <option name="project" value="LOCAL" />
       <updated>1574167222788</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ITS DONE">
+      <created>1574708915146</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574708915146</updated>
+    </task>
+    <task id="LOCAL-00006" summary="now uses global api">
+      <created>1574714353162</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574714353162</updated>
+    </task>
+    <task id="LOCAL-00007" summary="now uses global api">
+      <created>1574714402962</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1574714402962</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +190,18 @@
     <MESSAGE value="admin login FIXED" />
     <MESSAGE value="implemented a simple table for all flights and a fetch method&#10;currently only displays dummy data" />
     <MESSAGE value="flightSearch fully implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="flightSearch fully implemented" />
+    <MESSAGE value="ITS DONE" />
+    <MESSAGE value="now uses global api" />
+    <option name="LAST_COMMIT_MESSAGE" value="now uses global api" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="165" key="SettingsEditor" timestamp="1574759245591">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1574759245591" />
+    <state x="679" y="235" key="git4idea.branch.GitSmartOperationDialog" timestamp="1574759551211">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="679" y="235" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574759551211" />
   </component>
 </project>
