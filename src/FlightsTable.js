@@ -116,6 +116,18 @@ export const FlightsTableReturn = ({flights, returnFlights}) => {
 		text: 'Airline'
 	}];
 
+	const expandRow = {
+		// showExpandColumn: false,
+		onlyOneExpanding: true,
+		renderer: row => (
+			<div>
+				<p>
+					<NavLink to="/redirecting">Redirect to booking</NavLink>
+				</p>
+			</div>
+		)
+	};
+
 	return (
 		<div>
 			<h2>All Flights</h2>
@@ -123,22 +135,24 @@ export const FlightsTableReturn = ({flights, returnFlights}) => {
 				striped
 				hover
 				bootstrap4
-				keyField={"index"}
+				keyField={"id"}
 				data={flights}
 				columns={columns}
 				filter={filterFactory()}
 				pagination={paginationFactory()}
+				expandRow={expandRow}
 			/>
 			<h2>Return Flights</h2>
 			<BootstrapTable
 				striped
 				hover
 				bootstrap4
-				keyField={"index"}
+				keyField={"id"}
 				data={returnFlights}
 				columns={columns}
 				filter={filterFactory()}
 				pagination={paginationFactory()}
+				expandRow={expandRow}
 			/>
 		</div>
 	);
