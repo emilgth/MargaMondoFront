@@ -52,9 +52,9 @@ export const FlightsTable = ({flights}) => {
 		onlyOneExpanding: true,
 		renderer: row => (
 			<div>
-				<p>
+				<div>
 					<NavLink to="/redirecting">Redirect to booking</NavLink><p>Class: {row["flightClass"]}</p>
-				</p>
+				</div>
 			</div>
 		)
 	};
