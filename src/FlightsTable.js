@@ -53,7 +53,7 @@ export const FlightsTable = ({flights}) => {
 		renderer: row => (
 			<div>
 				<p>
-					<NavLink to="/redirecting">Redirect to booking</NavLink>'
+					<NavLink to="/redirecting">Redirect to booking</NavLink><p>Class: {row["flightClass"]}</p>
 				</p>
 			</div>
 		)

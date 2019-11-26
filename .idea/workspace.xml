@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="devbranch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FlightsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightsTable.js" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +24,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1TCGGZ8VSxeynSyv0SxrqjChtTR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -45,19 +45,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
@@ -89,6 +77,18 @@
         <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -154,7 +154,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574704479338</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added keys">
+      <created>1574759892414</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1574759892414</updated>
+    </task>
+    <task id="LOCAL-00008" summary="devbranch">
+      <created>1574764133554</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1574764133554</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,8 +191,63 @@
     <MESSAGE value="admin login FIXED" />
     <MESSAGE value="implemented a simple table for all flights and a fetch method&#10;currently only displays dummy data" />
     <MESSAGE value="flightSearch fully implemented" />
-    <MESSAGE value="devbranch" />
     <MESSAGE value="implemented checkboxes, that filter the list of flights if you uncheck an airline" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented checkboxes, that filter the list of flights if you uncheck an airline" />
+    <MESSAGE value="added keys" />
+    <MESSAGE value="devbranch" />
+    <option name="LAST_COMMIT_MESSAGE" value="devbranch" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574764132830">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574764132830" />
+    <state x="1220" y="267" key="FileChooserDialogImpl" timestamp="1574779207154">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1220" y="267" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1574779207154" />
+    <state width="1339" height="266" key="GridCell.Tab.0.bottom" timestamp="1574779484747">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1339" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1574779484747" />
+    <state width="1339" height="266" key="GridCell.Tab.0.center" timestamp="1574779484746">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1339" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1574779484746" />
+    <state width="1339" height="266" key="GridCell.Tab.0.left" timestamp="1574779484746">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1339" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1574779484746" />
+    <state width="1339" height="266" key="GridCell.Tab.0.right" timestamp="1574779484747">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1339" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1574779484747" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1574760452218">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574760452218" />
+    <state x="672" y="237" key="MultipleFileMergeDialog" timestamp="1574760452226">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="672" y="237" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574760452226" />
+    <state x="926" y="165" key="SettingsEditor" timestamp="1574779217524">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="926" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1574779217524" />
+    <state x="552" y="255" key="Vcs.Push.Dialog.v2" timestamp="1574764143910">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1574764143910" />
+    <state x="771" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1574760275951">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="771" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1574760275951" />
+    <state x="656" y="127" width="607" height="786" key="find.popup" timestamp="1574779561791">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="127" width="607" height="786" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1574779561791" />
+    <state x="667" y="235" key="git4idea.branch.GitSmartOperationDialog" timestamp="1574760287992">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="235" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574760287992" />
   </component>
 </project>
