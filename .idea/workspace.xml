@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="cleaned up code, removed login functionality">
+    <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="devbranch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="DevBranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,10 +33,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -136,7 +140,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574167222788</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="devbranch">
+      <created>1574675907131</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574675907131</updated>
+    </task>
+    <task id="LOCAL-00006" summary="implemented checkboxes, that filter the list of flights if you uncheck an airline">
+      <created>1574704479337</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574704479338</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +177,8 @@
     <MESSAGE value="admin login FIXED" />
     <MESSAGE value="implemented a simple table for all flights and a fetch method&#10;currently only displays dummy data" />
     <MESSAGE value="flightSearch fully implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="flightSearch fully implemented" />
+    <MESSAGE value="devbranch" />
+    <MESSAGE value="implemented checkboxes, that filter the list of flights if you uncheck an airline" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented checkboxes, that filter the list of flights if you uncheck an airline" />
   </component>
 </project>
