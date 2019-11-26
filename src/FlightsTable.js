@@ -52,7 +52,7 @@ export const FlightsTable = ({flights}) => {
 		renderer: row => (
 			<div>
 				<p>
-					<NavLink to="/redirecting">Redirect to booking</NavLink>'
+					<a href="http://localhost:3000/redirecting" button type="button" class="btn btn-primary">Redirect to booking</a>
 				</p>
 			</div>
 		)

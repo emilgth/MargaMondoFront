@@ -5,6 +5,7 @@ import {FlightSearch} from "./FlightSearch";
 import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
 
+
 const Welcome = () => {
 	return "Welcome to MargaMondo";
 };
@@ -18,6 +19,7 @@ const Header = () => {
 
 function App() {
 	const [flights, setFlights] = useState([]);
+
 
 	useEffect(() => {
 		facade.fetchAllFlights().then(data => setFlights(data));
