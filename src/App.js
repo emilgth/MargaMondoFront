@@ -3,6 +3,7 @@ import {FlightsTable} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import {FlightSearch} from "./FlightSearch";
 import facade from "./apiFacade";
+import {Redirection} from "./Redirection";
 
 const Welcome = () => {
 	return "Welcome to MargaMondo";
@@ -29,10 +30,13 @@ function App() {
 				<Switch>
 					<Route exact path={"/"}>
 						<Welcome/>
+						<FlightSearch setFlights={setFlights}/>
+						<FlightsTable flights={flights}/>
+					</Route>
+					<Route path="/redirecting">
+						<Redirection/>
 					</Route>
 				</Switch>
-				<FlightSearch setFlights={setFlights}/>
-				<FlightsTable flights={flights}/>
 			</Router>
 		</div>
 	);

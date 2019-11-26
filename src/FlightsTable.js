@@ -5,6 +5,8 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import filterFactory from 'react-bootstrap-table2-filter';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import facade from "./apiFacade";
+import {Redirection} from "./Redirection";
+import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 
 export const FlightsTable = ({flights}) => {
 
@@ -43,6 +45,19 @@ export const FlightsTable = ({flights}) => {
 		text: 'Airline'
 	}];
 
+
+	const expandRow = {
+		// showExpandColumn: false,
+		onlyOneExpanding: true,
+		renderer: row => (
+			<div>
+				<p>
+					<NavLink to="/redirecting">Redirect to booking</NavLink>'
+				</p>
+			</div>
+		)
+	};
+
 	return (
 		<div>
 			<h2>All Flights</h2>
@@ -50,11 +65,12 @@ export const FlightsTable = ({flights}) => {
 				striped
 				hover
 				bootstrap4
-				keyField={"index"}
+				keyField={"id"}
 				data={flights}
 				columns={columns}
 				filter={filterFactory()}
 				pagination={paginationFactory()}
+				expandRow={ expandRow }
 			/>
 
 		</div>
