@@ -60,3 +60,70 @@ export const FlightsTable = ({flights}) => {
 		</div>
 	);
 };
+
+export const FlightsTableReturn = ({flights, returnFlights}) => {
+
+	FlightsTable(flights);
+
+	const columns = [{
+		dataField: 'arrivalAirportName',
+		text: 'Departure Location',
+	}, {
+		dataField: 'departureAirportName',
+		text: 'Arrival Location',
+	}, {
+		dataField: 'departureTime',
+		text: 'Departure Time',
+		sort: true,
+
+		sortFunc: (date1, date2, order, dataField) => {
+			let aa = new Date(date1);
+			let bb = new Date(date2);
+			if (order === 'asc') {
+				return bb - aa;
+			}
+			return aa - bb; // desc
+		}
+	}, {
+		dataField: 'arrivalTime',
+		text: 'Arrival Time',
+
+	}, {
+		dataField: 'flightDuration',
+		text: 'Flight Duration'
+	}, {
+		dataField: 'price',
+		text: 'Price',
+		sort: true
+	}, {
+		dataField: 'airline',
+		text: 'Airline'
+	}];
+
+	return (
+		<div>
+			<h2>All Flights</h2>
+			<BootstrapTable
+				striped
+				hover
+				bootstrap4
+				keyField={"index"}
+				data={flights}
+				columns={columns}
+				filter={filterFactory()}
+				pagination={paginationFactory()}
+			/>
+			<h2>Return Flights</h2>
+			<BootstrapTable
+				striped
+				hover
+				bootstrap4
+				keyField={"index"}
+				data={returnFlights}
+				columns={columns}
+				filter={filterFactory()}
+				pagination={paginationFactory()}
+			/>
+		</div>
+	);
+};
