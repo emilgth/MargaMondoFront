@@ -27,8 +27,13 @@ function App() {
 
 	useEffect(() => {
 		facade.fetchAllFlights().then(data => {
-			setOriginalFlights(data);
-			setFlights(data);
+			let combinedArrays = [...data[0], ...data[1]];
+			let flightsFormattedTime = combinedArrays.map(flight => {
+				flight.flightDuration = msToTime(flight.flightDuration);
+				return flight;
+			});
+			setOriginalFlights(flightsFormattedTime);
+			setFlights(flightsFormattedTime);
 			//pull out the distinct airlines from the list of flights
 			const distinct = (value, index, self) => {
 				return self.indexOf(value) === index;
@@ -43,6 +48,18 @@ function App() {
 		});
 
 	}, []);
+
+	function msToTime(duration) {
+		let seconds = Math.floor((duration / 1000) % 60),
+			minutes = Math.floor((duration / (1000 * 60)) % 60),
+			hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+		hours = (hours < 10) ? "0" + hours : hours;
+		minutes = (minutes < 10) ? "0" + minutes : minutes;
+		seconds = (seconds < 10) ? "0" + seconds : seconds;
+//todo change to 1 hours and 343 minutes
+		return hours + ":" + minutes + ":" + seconds;
+	}
 
 	const handleCheckbox = (event) => {
 		const target = event.target;

@@ -35,7 +35,8 @@ export const FlightsTable = ({flights}) => {
 
 	}, {
 		dataField: 'flightDuration',
-		text: 'Flight Duration'
+		text: 'Flight Duration',
+		sort: true
 	}, {
 		dataField: 'price',
 		text: 'Price',
