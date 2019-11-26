@@ -1,3 +1,4 @@
+import React from 'react'
 export function handleAirlinesCheckbox(airlines, setAirlines, setAirlinesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights) {
     return (event) => {
         const target = event.target;
@@ -38,4 +39,34 @@ export function handleAirlinesCheckbox(airlines, setAirlines, setAirlinesUncheck
 
         setReturnFlights(newReturnFlights);
     };
+}
+
+export function renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines) {
+    return <div>
+        {airlines.map(airline =>
+            <div key={airline.airline} className={"form-check-inline"}>
+                <input id={airline}
+                       className={"form-check-input"}
+                       type={"checkbox"}
+                       onChange={handleCheckbox}
+                       name={airline.airline}
+                       checked={airline.checked}/>
+                <label className={"form-check-label"}>{airline.airline}</label>
+            </div>)}
+        <button className={"btn btn-primary btn-sm"} onClick={() => {
+            setFlights(originalFlights);
+            setReturnFlights(originalReturnFlights);
+            const distinct = (value, index, self) => {
+                return self.indexOf(value) === index;
+            };
+            const allAirlines = originalFlights.map(data => data.airline);
+            const airlinesAlmost = allAirlines.filter(distinct);
+            const airlines = airlinesAlmost.map(airline => {
+                return {airline: airline, checked: true}
+            });
+            setAirlines(airlines);
+        }}>Reset
+        </button>
+        <br/>
+    </div>;
 }

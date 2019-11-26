@@ -4,7 +4,7 @@ import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom"
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
-import {handleAirlinesCheckbox} from "./checkboxFacade";
+import {handleAirlinesCheckbox, renderAirlinesCheckboxes} from "./checkboxFacade";
 
 //Welcome to the jungle
 const Welcome = () => {
@@ -17,6 +17,8 @@ const Header = () => {
         </div>
     )
 };
+
+
 
 
 function App() {
@@ -69,61 +71,36 @@ function App() {
 
     return (
         <div>
-            <Router>
-                <Header/>
-                {/*todo refactor into separate component */}
-                {console.log(airlines)}
-                {airlines.map(airline =>
-                    <div key={airline.airline} className={"form-check-inline"}>
-                        <input id={airline}
-                               className={"form-check-input"}
-                               type={"checkbox"}
-                               onChange={handleCheckbox}
-                               name={airline.airline}
-                               checked={airline.checked}/>
-                        <label className={"form-check-label"}>{airline.airline}</label>
-                    </div>)}
-                <button className={"btn btn-primary btn-sm"} onClick={() => {
-                    setFlights(originalFlights);
-                    setReturnFlights(originalReturnFlights);
-                    const distinct = (value, index, self) => {
-                        return self.indexOf(value) === index;
-                    };
-                    const allAirlines = originalFlights.map(data => data.airline);
-                    const airlinesAlmost = allAirlines.filter(distinct);
-                    const airlines = airlinesAlmost.map(airline => {
-                        return {airline: airline, checked: true}
-                    });
-                    setAirlines(airlines);
-                }}>Reset
-                </button>
-                <br/>
-
-                <Switch>
-                    <Route exact path={"/"}>
-                        <Welcome/>
-                        <label>
-                            <input
-                                type={"checkbox"}
-                                onChange={() => returnChecked === "off"
-                                    ? setReturnChecked("on") : setReturnChecked("off")}/>Return
-                            ticket
-                        </label>
-                        {returnChecked === "on"
-                            ? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights}
-                                                  setReturnFlights={setReturnFlights}
-                                                  setOriginalReturnFlights={setOriginalReturnFlights}/>
-                            : <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
-                        {returnChecked === "on"
-                            ? <FlightsTableReturn flights={flights} returnFlights={returnFlights}/>
-                            : <FlightsTable flights={flights}/>}
-                    </Route>
-                    <Route path="/redirecting">
-                        <Redirection/>
-                    </Route>
-                </Switch>
-            </Router>
-        </div>
+			<Router>
+				<Header/>
+				{/*todo refactor into separate component */}
+				{console.log(airlines)}
+				{renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
+				<Switch>
+					<Route exact path={"/"}>
+						<Welcome/>
+						<label>
+							<input
+								type={"checkbox"}
+								onChange={() => returnChecked === "off"
+									? setReturnChecked("on") : setReturnChecked("off")}/>Return
+							ticket
+						</label>
+						{returnChecked === "on"
+							? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights}
+												  setReturnFlights={setReturnFlights}
+												  setOriginalReturnFlights={setOriginalReturnFlights}/>
+							: <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
+						{returnChecked === "on"
+							? <FlightsTableReturn flights={flights} returnFlights={returnFlights}/>
+							: <FlightsTable flights={flights}/>}
+					</Route>
+					<Route path="/redirecting">
+						<Redirection/>
+					</Route>
+				</Switch>
+			</Router>
+		</div>
     );
 }
 

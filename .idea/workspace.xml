@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/checkboxFacade.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/checkboxFacade.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/checkboxFacade.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574794165754</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="extracted airlines checkbox function">
+      <created>1574802080918</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1574802080918</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,13 +210,14 @@
     <MESSAGE value="added keys" />
     <MESSAGE value="devbranch" />
     <MESSAGE value="add class to flights" />
-    <option name="LAST_COMMIT_MESSAGE" value="add class to flights" />
+    <MESSAGE value="extracted airlines checkbox function" />
+    <option name="LAST_COMMIT_MESSAGE" value="extracted airlines checkbox function" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574794164883">
+    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574802080206">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574794164883" />
+    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574802080206" />
     <state x="1220" y="267" key="FileChooserDialogImpl" timestamp="1574779207154">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
