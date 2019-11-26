@@ -82,10 +82,10 @@ export const FlightsTableReturn = ({flights, returnFlights}) => {
 	FlightsTable(flights);
 
 	const columns = [{
-		dataField: 'arrivalAirportName',
+		dataField: 'departureAirportName',
 		text: 'Departure Location',
 	}, {
-		dataField: 'departureAirportName',
+		dataField: 'arrivalAirportName',
 		text: 'Arrival Location',
 	}, {
 		dataField: 'departureTime',

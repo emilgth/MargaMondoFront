@@ -123,6 +123,8 @@ function App() {
 						<Redirection/>
 					</Route>
 				</Switch>
+				<FlightSearch setFlights={setFlights}/>
+				<FlightsTable flights={flights}/>
 			</Router>
 		</div>
 	);
