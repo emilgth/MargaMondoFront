@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="devbranch">
+    <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/checkboxFacade.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlightsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +46,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
@@ -168,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574764133554</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add class to flights">
+      <created>1574794165754</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1574794165754</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,33 +202,34 @@
     <MESSAGE value="implemented checkboxes, that filter the list of flights if you uncheck an airline" />
     <MESSAGE value="added keys" />
     <MESSAGE value="devbranch" />
-    <option name="LAST_COMMIT_MESSAGE" value="devbranch" />
+    <MESSAGE value="add class to flights" />
+    <option name="LAST_COMMIT_MESSAGE" value="add class to flights" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574764132830">
+    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574794164883">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574764132830" />
+    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574794164883" />
     <state x="1220" y="267" key="FileChooserDialogImpl" timestamp="1574779207154">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1220" y="267" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1574779207154" />
-    <state width="1339" height="266" key="GridCell.Tab.0.bottom" timestamp="1574779484747">
+    <state width="456" height="281" key="GridCell.Tab.0.bottom" timestamp="1574798486859">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1339" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1574779484747" />
-    <state width="1339" height="266" key="GridCell.Tab.0.center" timestamp="1574779484746">
+    <state width="456" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1574798486859" />
+    <state width="456" height="281" key="GridCell.Tab.0.center" timestamp="1574798486858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1339" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1574779484746" />
-    <state width="1339" height="266" key="GridCell.Tab.0.left" timestamp="1574779484746">
+    <state width="456" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1574798486858" />
+    <state width="456" height="281" key="GridCell.Tab.0.left" timestamp="1574798486858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1339" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1574779484746" />
-    <state width="1339" height="266" key="GridCell.Tab.0.right" timestamp="1574779484747">
+    <state width="456" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1574798486858" />
+    <state width="456" height="281" key="GridCell.Tab.0.right" timestamp="1574798486859">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1339" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1574779484747" />
+    <state width="456" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1574798486859" />
     <state x="184" y="86" key="MergeDialog" timestamp="1574760452218">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -229,10 +238,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="672" y="237" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574760452226" />
-    <state x="926" y="165" key="SettingsEditor" timestamp="1574779217524">
+    <state x="660" y="230" key="RollbackChangesDialog" timestamp="1574801877173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="926" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1574779217524" />
+    <state x="660" y="230" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574801877173" />
+    <state x="922" y="165" key="SettingsEditor" timestamp="1574800999728">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="922" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1574800999728" />
     <state x="552" y="255" key="Vcs.Push.Dialog.v2" timestamp="1574764143910">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -249,5 +262,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="235" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574760287992" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1574797898495">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1574797898495" />
   </component>
 </project>
