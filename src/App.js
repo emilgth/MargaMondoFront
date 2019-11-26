@@ -75,7 +75,7 @@ function App() {
 			<Router>
 				<Header/>
 				{/*todo refactor into separate component */}
-				{airlines.map(airline => <div className={"form-check-inline"}><input id={airline}
+				{airlines.map(airline => <div key={airline.airline} className={"form-check-inline"}><input  id={airline}
 				                                                                     className={"form-check-input"}
 				                                                                     type={"checkbox"}
 				                                                                     onChange={handleCheckbox}

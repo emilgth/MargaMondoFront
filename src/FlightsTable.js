@@ -50,7 +50,7 @@ export const FlightsTable = ({flights}) => {
 				striped
 				hover
 				bootstrap4
-				keyField={"index"}
+				keyField={"id"}
 				data={flights}
 				columns={columns}
 				filter={filterFactory()}
