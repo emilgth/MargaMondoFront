@@ -9,6 +9,7 @@ import {Redirection} from "./Redirection";
 import Logo from "./purple.svg"
 import Margamondo from "./margamond.png"
 
+
 import {
     handleAirlinesCheckbox,
     renderAirlinesCheckboxes,
@@ -28,7 +29,7 @@ const Welcome = () => {
 const Header = () => {
     return (
         <div>
-			<nav className="navbar navbar-expand-sm bg-orange	 navbar-dark">
+			<nav className="navbar navbar-expand-sm bg-orange shadow-lg navbar-dark">
 				<a className="navbar-brand" href="http://localhost:3000/">
 					<img src={Logo} className="logo"/>
 				</a>
@@ -105,11 +106,11 @@ function App() {
     const handleClassCheckbox = handleFlightClassCheckbox(flightClasses, setFlightClasses, setFlightClassesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights, airlinesUnchecked);
 
     return (
-        <div>
+        <div className={"bg-spa"}>
             <Router>
                 <Header/>
                 {/*todo refactor into separate component */}
-				<div className={"bg-white container rounded mt-2 p-2"}>
+				<div className={"bg-marge shadow-lg container rounded mt-2 p-2"}>
                 {renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
                 <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox}
                                          setFlights={setFlights} originalFlights={originalFlights}
@@ -119,7 +120,7 @@ function App() {
 				</div>
                 <Switch>
                     <Route exact path={"/"}>
-						<div className={"container mt-5 bg-white rounded p-2"}>
+						<div className={"container shadow-lg mt-5 bg-marge rounded p-2"}>
                         <label>
                             <input
                                 type={"checkbox"}

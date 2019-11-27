@@ -8,6 +8,7 @@ import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 
+
 export const FlightsTable = ({flights}) => {
 
 	const columns = [{
@@ -60,7 +61,7 @@ export const FlightsTable = ({flights}) => {
 	};
 
 	return (
-		<div className={"mt-5 shadow-sm bg-white rounded p-2"}>
+		<div className={"mt-5 bg-marge rounded p-2"}>
 			<h2>All Flights</h2>
 			<BootstrapTable
 				striped
@@ -130,7 +131,7 @@ export const FlightsTableReturn = ({flights, returnFlights}) => {
 	};
 
 	return (
-		<div>
+		<div className={"mt-5 bg-marge rounded p-2"}>
 			<h2>All Flights</h2>
 			<BootstrapTable
 				striped
