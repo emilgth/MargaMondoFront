@@ -29,8 +29,8 @@ export const FlightSearch = ({setOriginalFlights, setFlights}) => {
                             flight.flightDuration = msToTime(flight.flightDuration);
                             return flight;
                         });
-                        setOriginalFlights(data);
-                        setFlights(data);
+                        setOriginalFlights(flightsFormattedTime);
+                        setFlights(flightsFormattedTime);
                     })}>search
             </button>
         </div>
@@ -67,8 +67,8 @@ export const FlightSearchReturn = ({setOriginalFlights, setOriginalReturnFlights
                             flight.flightDuration = msToTime(flight.flightDuration);
                             return flight;
                         });
-                        setOriginalFlights(data);
-                        setFlights(data);
+                        setOriginalFlights(flightsFormattedTime);
+                        setFlights(flightsFormattedTime);
                         const returnData = {
                             destination: searchData.departure,
                             departure: searchData.destination,
@@ -79,8 +79,8 @@ export const FlightSearchReturn = ({setOriginalFlights, setOriginalReturnFlights
                                 flight.flightDuration = msToTime(flight.flightDuration);
                                 return flight;
                             });
-                            setOriginalReturnFlights(data);
-                            setReturnFlights(data)
+                            setOriginalReturnFlights(flightsFormattedTime);
+                            setReturnFlights(flightsFormattedTime)
                         })
                     })}>search
             </button>
