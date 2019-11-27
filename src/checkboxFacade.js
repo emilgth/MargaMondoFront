@@ -82,7 +82,7 @@ export function renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, o
                        checked={airline.checked}/>
                 <label className={"form-check-label"}>{airline.airline}</label>
             </div>)}
-        <button className={"btn btn-primary btn-sm"} onClick={() => {
+        <button className={"button"} onClick={() => {
             resetAirlines(setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines);
         }}>Reset
         </button>
@@ -125,7 +125,7 @@ export const RenderClassesCheckboxes = ({flightClasses, handleClassCheckbox, set
                        checked={flightClass.checked}/>
                 <label className={"form-check-label"}>{flightClass.flightClass}</label>
             </div>)}
-        <button className={"btn btn-primary btn-sm"} onClick={() => {
+        <button className={"button"} onClick={() => {
             resetFlightClasses(setFlights, originalFlights, setReturnFlights, originalReturnFlights, setFlightClasses);
         }}>Reset
         </button>

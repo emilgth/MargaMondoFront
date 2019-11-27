@@ -20,9 +20,9 @@ export const FlightSearch = ({setOriginalFlights, setFlights}) => {
                    onChange={event => setSearchData({...searchData, departure: event.target.value})}/>
             <input className={"form-control input-group-prepend"} placeholder={"Destination"}
                    onChange={event => setSearchData({...searchData, destination: event.target.value})}/>
-            <input className={"form-control"}
+            <input className={"form-control  input-group-append"}
                    onChange={event => setSearchData({...searchData, dateTime: event.target.value})} type={"date"}/>
-            <button className={"btn btn-primary input-group-append"}
+            <button className={"button"}
                     onClick={() => apiFacade.searchFlights(searchData).then(data => {
                         console.log(data);
                         let flightsFormattedTime = data.map(flight => {

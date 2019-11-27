@@ -43,3 +43,23 @@ width:25%; height:25%; max-height: 25%; max-width: 25%;
   background-position: center;
   background-size: cover;
 }
+
+.button {
+  background-color: #de9577;
+  border: none;
+  color: white;
+  padding: 7px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 1px;
+  cursor: pointer;
+  border-radius: 6px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.1s;
+}
+
+.button:hover {
+  background-color: orange;
+}

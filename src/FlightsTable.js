@@ -53,7 +53,7 @@ export const FlightsTable = ({flights}) => {
 		onlyOneExpanding: true,
 		renderer: row => (
 			<div>
-					<a href="http://localhost:3000/redirecting" button type="button" class="btn btn-primary">Redirect to
+					<a href="http://localhost:3000/redirecting" button type="button" class="button">Redirect to
 						booking</a>
 					<p>Class: {row["flightClass"]}</p>
 			</div>
