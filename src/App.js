@@ -8,7 +8,6 @@ import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
 import Logo from "./purple.svg"
 import Margamondo from "./margamond.png"
-import Collapsible from 'react-collapsible';
 
 
 //Welcome to the jungle
@@ -151,7 +150,7 @@ function App() {
 				</div>
 				<Switch>
 					<Route exact path={"/"}>
-						<div className={"container mt-5 shadow-sm bg-white rounded p-2"}>
+						<div className={"container mt-5 bg-white rounded p-2"}>
 							<label>
 								<input
 									type={"checkbox"}
