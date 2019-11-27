@@ -9,6 +9,12 @@ import {Redirection} from "./Redirection";
 import Logo from "./purple.svg"
 import Margamondo from "./margamond.png"
 
+import {
+    handleAirlinesCheckbox,
+    renderAirlinesCheckboxes,
+    handleFlightClassCheckbox,
+    RenderClassesCheckboxes
+} from "./checkboxFacade";
 
 //Welcome to the jungle
 const Welcome = () => {
@@ -31,149 +37,113 @@ const Header = () => {
     )
 };
 
+
 function App() {
     const [returnChecked, setReturnChecked] = useState("off");
-	const [originalFlights, setOriginalFlights] = useState([]); //this is the list of flights retrieved by the fetch function, it shouldn't be altered by anything, but the fetch function
-	const [originalReturnFlights, setOriginalReturnFlights] = useState([]);
-	const [flights, setFlights] = useState(originalFlights); //this is the list of flights used to actually display the list, and the one altered by various functions
-	const [returnFlights, setReturnFlights] = useState([]);
-	const [airlines, setAirlines] = useState([]); //this is used to display the checkboxes
-	const [airlinesUnchecked, setAirlinesUnchecked] = useState([]);
+    const [originalFlights, setOriginalFlights] = useState([]); //this is the list of flights retrieved by the fetch function, it shouldn't be altered by anything, but the fetch function
+    const [originalReturnFlights, setOriginalReturnFlights] = useState([]);
+    const [flights, setFlights] = useState(originalFlights); //this is the list of flights used to actually display the list, and the one altered by various functions
+    const [returnFlights, setReturnFlights] = useState([]);
+    const [airlines, setAirlines] = useState([]); //this is used to display the checkboxes
+    const [airlinesUnchecked, setAirlinesUnchecked] = useState([]);
+    const [flightClasses, setFlightClasses] = useState([]);
+    const [flightClassesUnchecked, setFlightClassesUnchecked] = useState([]);
 
+    useEffect(() => {
+        facade.fetchAllFlights().then(data => {
+            for (let flight of data[1]) {
+                flight.id += 1000
+            }
+            let combinedArrays = [...data[0], ...data[1]];
+            let flightsFormattedTime = combinedArrays.map(flight => {
+                flight.flightDuration = msToTime(flight.flightDuration);
+                if (flight.flightClass === undefined) {
+                    flight.flightClass = "Unknown";
+                }
+                return flight;
+            });
+            setOriginalFlights(flightsFormattedTime);
+            setFlights(flightsFormattedTime);
 
-	useEffect(() => {
-		facade.fetchAllFlights().then(data => {
-			let combinedArrays = [...data[0], ...data[1]];
-			let flightsFormattedTime = combinedArrays.map(flight => {
-				flight.flightDuration = msToTime(flight.flightDuration);
-				return flight;
-			});
-			setOriginalFlights(flightsFormattedTime);
-			setFlights(flightsFormattedTime);
+            //pull out the distinct airlines from the list of flights
+            let allAirlines = new Set();
+            let allFlightClasses = new Set();
+            combinedArrays.forEach(data => {
+                allAirlines.add(data.airline);
+                allFlightClasses.add(data.flightClass);
+            });
 
-			//pull out the distinct airlines from the list of flights
-			const distinct = (value, index, self) => {
-				return self.indexOf(value) === index;
-			};
-			const allAirlines = combinedArrays.map(data => data.airline);
-			const airlinesAlmost = allAirlines.filter(distinct);
-			//adds a 'checked' property to the list of airlines
-			const airlines = airlinesAlmost.map(airline => {
-				return {airline: airline, checked: true}
-			});
-			setAirlines(airlines);
-		});
+            //adds a 'checked' property to the list of airlines
+            allAirlines = [...allAirlines];
+            allFlightClasses = [...allFlightClasses];
+            allAirlines = allAirlines.map(airline => {
+                return {airline: airline, checked: true}
+            });
+            allFlightClasses = allFlightClasses.map(flightClass => {
+                return {flightClass: flightClass, checked: true}
+            });
 
-	}, []);
+            setAirlines(allAirlines);
+            setFlightClasses(allFlightClasses);
+        });
 
-	function msToTime(duration) {
-		let seconds = Math.floor((duration / 1000) % 60),
-			minutes = Math.floor((duration / (1000 * 60)) % 60),
-			hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+    }, []);
 
-		hours = (hours < 10) ? "0" + hours : hours;
-		minutes = (minutes < 10) ? "0" + minutes : minutes;
-		seconds = (seconds < 10) ? "0" + seconds : seconds;
-//todo change to 1 hours and 343 minutes
-		return hours + ":" + minutes + ":" + seconds;
-	}
+    function msToTime(duration) {
+        let seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-	const handleCheckbox = (event) => {
-		const target = event.target;
-		//sets the target airline's 'checked' property to the opposite
-		let alteredAirlines = airlines.map(airline => {
-			if (target.name === airline.airline) {
-				return {airline: airline.airline, checked: !!target.checked};
-			} else {
-				return airline;
-			}
-		});
-		setAirlines(alteredAirlines);
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+        //todo change to 1 hours and 343 minutes
+        return hours + ":" + minutes + ":" + seconds;
+    }
 
-		//returns a list of airlines to be filtered out of the flight list
-		//todo: have tried to refactor this to return a list of the airline names only, but then it doesn't work :)
-		let airlinesToFilter = alteredAirlines.filter(airline => {
-			return !airline.checked;
-		});
-		setAirlinesUnchecked(airlinesToFilter);
+    const handleCheckbox = handleAirlinesCheckbox(airlines, setAirlines, setAirlinesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights, flightClassesUnchecked);
+    const handleClassCheckbox = handleFlightClassCheckbox(flightClasses, setFlightClasses, setFlightClassesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights, airlinesUnchecked);
 
-		let newFlights = originalFlights.filter(flight => {
-			//
-			let airlineNamesOnly = airlinesToFilter.map(airline => airline.airline);
-			if (!airlineNamesOnly.includes(flight.airline)) {
-				return flight;
-			}
-		});
-
-		setFlights(newFlights);
-
-		let newReturnFlights = originalReturnFlights.filter(flight => {
-			//
-			let airlineNamesOnly = airlinesToFilter.map(airline => airline.airline);
-			if (!airlineNamesOnly.includes(flight.airline)) {
-				return flight;
-			}
-		});
-
-		setReturnFlights(newReturnFlights);
-	};
-
-	return (
-		<div>
-			<Router>
-				<Header/>
-				{/*todo refactor into separate component */}
-				{console.log(airlines)}
-				<div className={"bg-white container rounded mt-2 p-2"}>{airlines.map(airline => <div key={airline.airline} className={"form-check-inline"}><input id={airline}
-																										   className={"form-check-input"}
-																										   type={"checkbox"}
-																										   onChange={handleCheckbox}
-																										   name={airline.airline}
-																										   checked={airline.checked}/>
-					<label className={"form-check-label"}>{airline.airline}</label>
-				</div>)}
-				<button className={"btn btn-primary btn-sm"} onClick={() => {
-					setFlights(originalFlights);
-					setReturnFlights(originalReturnFlights);
-					const distinct = (value, index, self) => {
-						return self.indexOf(value) === index;
-					};
-					const allAirlines = originalFlights.map(data => data.airline);
-					const airlinesAlmost = allAirlines.filter(distinct);
-					const airlines = airlinesAlmost.map(airline => {
-						return {airline: airline, checked: true}
-					});
-					setAirlines(airlines);
-				}}>Reset
-				</button>
-				<br/>
+    return (
+        <div>
+            <Router>
+                <Header/>
+                {/*todo refactor into separate component */}
+				<div className={"bg-white container rounded mt-2 p-2"}>
+                {renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
+                <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox}
+                                         setFlights={setFlights} originalFlights={originalFlights}
+                                         setReturnFlights={setReturnFlights}
+                                         originalReturnFlights={originalReturnFlights}
+                                         setFlightClasses={setFlightClasses}/>
 				</div>
-				<Switch>
-					<Route exact path={"/"}>
+                <Switch>
+                    <Route exact path={"/"}>
 						<div className={"container mt-5 bg-white rounded p-2"}>
-							<label>
-								<input
-									type={"checkbox"}
-									onChange={() => returnChecked === "off"
-										? setReturnChecked("on") : setReturnChecked("off")}/>Return
-								ticket
-							</label>
-						{returnChecked === "on"
-							? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights} setReturnFlights={setReturnFlights} setOriginalReturnFlights={setOriginalReturnFlights}/>
-							: <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
-						{
-							returnChecked === "on"
-							? <FlightsTableReturn flights={flights} returnFlights={returnFlights}/>
-							: <FlightsTable flights={flights}/>}
+                        <label>
+                            <input
+                                type={"checkbox"}
+                                onChange={() => returnChecked === "off"
+                                    ? setReturnChecked("on") : setReturnChecked("off")}/>Return
+                            ticket
+                        </label>
+                        {returnChecked === "on"
+                            ? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights}
+                                                  setReturnFlights={setReturnFlights}
+                                                  setOriginalReturnFlights={setOriginalReturnFlights}/>
+                            : <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
+                        {returnChecked === "on"
+                            ? <FlightsTableReturn flights={flights} returnFlights={returnFlights}/>
+                            : <FlightsTable flights={flights}/>}
 						</div>
-					</Route>
-					<Route path="/redirecting">
-						<Redirection/>
-					</Route>
-				</Switch>
-			</Router>
-		</div>
-	);
+                    </Route>
+                    <Route path="/redirecting">
+                        <Redirection/>
+                    </Route>
+                </Switch>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
