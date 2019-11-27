@@ -4,7 +4,12 @@ import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom"
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
-import {handleAirlinesCheckbox, renderAirlinesCheckboxes, handleFlightClassCheckbox, RenderClassesCheckboxes} from "./checkboxFacade";
+import {
+    handleAirlinesCheckbox,
+    renderAirlinesCheckboxes,
+    handleFlightClassCheckbox,
+    RenderClassesCheckboxes
+} from "./checkboxFacade";
 
 //Welcome to the jungle
 const Welcome = () => {
@@ -38,36 +43,34 @@ function App() {
             let combinedArrays = [...data[0], ...data[1]];
             let flightsFormattedTime = combinedArrays.map(flight => {
                 flight.flightDuration = msToTime(flight.flightDuration);
+                if (flight.flightClass === undefined) {
+                    flight.flightClass = "Unknown";
+                }
                 return flight;
             });
             setOriginalFlights(flightsFormattedTime);
             setFlights(flightsFormattedTime);
 
             //pull out the distinct airlines from the list of flights
-            const distinct = (value, index, self) => {
-                return self.indexOf(value) === index;
-            };
-            const allAirlines = [];
-            const allFlightClasses = [];
-            combinedArrays.map(data => {
-                allAirlines.push(data.airline);
-                if (data.flightClass !== undefined) {
-                    allFlightClasses.push(data.flightClass);
-                }
+            let allAirlines = new Set();
+            let allFlightClasses = new Set();
+            combinedArrays.forEach(data => {
+                allAirlines.add(data.airline);
+                allFlightClasses.add(data.flightClass);
             });
-
-            const airlinesAlmost = allAirlines.filter(distinct);
-            const flightClassesAlmost = allFlightClasses.filter(distinct);
 
             //adds a 'checked' property to the list of airlines
-            const airlines = airlinesAlmost.map(airline => {
+            allAirlines = [...allAirlines];
+            allFlightClasses = [...allFlightClasses];
+            allAirlines = allAirlines.map(airline => {
                 return {airline: airline, checked: true}
             });
-            const flightClasses = flightClassesAlmost.map(flightClass => {
+            allFlightClasses = allFlightClasses.map(flightClass => {
                 return {flightClass: flightClass, checked: true}
             });
-            setAirlines(airlines);
-            setFlightClasses(flightClasses);
+
+            setAirlines(allAirlines);
+            setFlightClasses(allFlightClasses);
         });
 
     }, []);
@@ -93,7 +96,11 @@ function App() {
                 <Header/>
                 {/*todo refactor into separate component */}
                 {renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
-                <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox} setFlights={setFlights} originalFlights={originalFlights} setReturnFlights={setReturnFlights} originalReturnFlights={originalReturnFlights} setFlightClasses={setFlightClasses} />
+                <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox}
+                                         setFlights={setFlights} originalFlights={originalFlights}
+                                         setReturnFlights={setReturnFlights}
+                                         originalReturnFlights={originalReturnFlights}
+                                         setFlightClasses={setFlightClasses}/>
                 <Switch>
                     <Route exact path={"/"}>
                         <Welcome/>
