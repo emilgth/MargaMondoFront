@@ -15,29 +15,17 @@ export function handleFlightClassCheckbox(flightClasses, setFlightClasses, setFl
 
         //returns a list of airlines to be filtered out of the flight list
         //todo: have tried to refactor this to return a list of the airline names only, but then it doesn't work :)
-        let classesToFilter = alteredClasses.filter(flightClass => {
-            return !flightClass.checked;
-        });
+        let classesToFilter = alteredClasses
+            .filter(flightClass => {
+                return !flightClass.checked;
+            })
+            .map(flightClass => flightClass.flightClass);
         setFlightClassesUnchecked(classesToFilter);
 
-        let newFlights = originalFlights.filter(flight => {
-            //
-            let classesNamesOnly = classesToFilter.map(flightClass => flightClass.flightClass);
-            if (!classesNamesOnly.includes(flight.flightClass)) {
-                return flight;
-            }
-        });
+        let newFlights = originalFlights.filter(flight => !classesToFilter.includes(flight.flightClass));
+        let newReturnFlights = classesToFilter.filter(flight => !classesToFilter.includes(flight.flightClass));
 
         setFlights(newFlights);
-
-        let newReturnFlights = originalReturnFlights.filter(flight => {
-            //
-            let classesNamesOnly = classesToFilter.map(flightClass => flightClass.flightClass);
-            if (!classesNamesOnly.includes(flight.flightClass)) {
-                return flight;
-            }
-        });
-
         setReturnFlights(newReturnFlights);
     };
 }
@@ -57,29 +45,17 @@ export function handleAirlinesCheckbox(airlines, setAirlines, setAirlinesUncheck
 
         //returns a list of airlines to be filtered out of the flight list
         //todo: have tried to refactor this to return a list of the airline names only, but then it doesn't work :)
-        let airlinesToFilter = alteredAirlines.filter(airline => {
+        let airlinesToFilter = alteredAirlines
+            .filter(airline => {
             return !airline.checked;
-        });
+        })
+            .map(airline => airline.airline);
         setAirlinesUnchecked(airlinesToFilter);
 
-        let newFlights = originalFlights.filter(flight => {
-            //
-            let airlineNamesOnly = airlinesToFilter.map(airline => airline.airline);
-            if (!airlineNamesOnly.includes(flight.airline)) {
-                return flight;
-            }
-        });
+        let newFlights = originalFlights.filter(flight => !airlinesToFilter.includes(flight));
+        let newReturnFlights = originalReturnFlights.filter(flight => !airlinesToFilter.includes(flight));
 
         setFlights(newFlights);
-
-        let newReturnFlights = originalReturnFlights.filter(flight => {
-            //
-            let airlineNamesOnly = airlinesToFilter.map(airline => airline.airline);
-            if (!airlineNamesOnly.includes(flight.airline)) {
-                return flight;
-            }
-        });
-
         setReturnFlights(newReturnFlights);
     };
 }
@@ -133,7 +109,7 @@ export const RenderClassesCheckboxes = ({flightClasses, handleClassCheckbox, set
                 return self.indexOf(value) === index;
             };
             const allFlightClasses = [];
-            originalFlights.map(data => {
+            originalFlights.forEach(data => {
                 if (data.flightClass !== undefined) {
                     allFlightClasses.push(data.flightClass);
                 }
