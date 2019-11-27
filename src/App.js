@@ -1,18 +1,33 @@
 import React, {useEffect, useState} from "react"
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import {FlightsTable, FlightsTableReturn} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
+import Logo from "./purple.svg"
+import Margamondo from "./margamond.png"
+import Collapsible from 'react-collapsible';
+
 
 //Welcome to the jungle
 const Welcome = () => {
-    return "Welcome to MargaMondo";
+    return (
+    	<div>
+			<img src={Margamondo} className="margmond"/>
+		</div>
+	);
 };
 
 const Header = () => {
     return (
-        <div><NavLink to={"/"}>Home</NavLink>
+        <div>
+			<nav className="navbar navbar-expand-sm bg-orange	 navbar-dark">
+				<a className="navbar-brand" href="http://localhost:3000/">
+					<img src={Logo} className="logo"/>
+				</a>
+			</nav>
         </div>
     )
 };
@@ -110,7 +125,7 @@ function App() {
 				<Header/>
 				{/*todo refactor into separate component */}
 				{console.log(airlines)}
-				{airlines.map(airline => <div key={airline.airline} className={"form-check-inline"}><input id={airline}
+				<div className={"bg-white container rounded mt-2 p-2"}>{airlines.map(airline => <div key={airline.airline} className={"form-check-inline"}><input id={airline}
 																										   className={"form-check-input"}
 																										   type={"checkbox"}
 																										   onChange={handleCheckbox}
@@ -133,23 +148,25 @@ function App() {
 				}}>Reset
 				</button>
 				<br/>
-
+				</div>
 				<Switch>
 					<Route exact path={"/"}>
-						<Welcome/>
-						<label>
-							<input
-								type={"checkbox"}
-								onChange={() => returnChecked === "off"
-									? setReturnChecked("on") : setReturnChecked("off")}/>Return
-							ticket
-						</label>
+						<div className={"container mt-5 shadow-sm bg-white rounded p-2"}>
+							<label>
+								<input
+									type={"checkbox"}
+									onChange={() => returnChecked === "off"
+										? setReturnChecked("on") : setReturnChecked("off")}/>Return
+								ticket
+							</label>
 						{returnChecked === "on"
 							? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights} setReturnFlights={setReturnFlights} setOriginalReturnFlights={setOriginalReturnFlights}/>
 							: <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
-						{returnChecked === "on"
+						{
+							returnChecked === "on"
 							? <FlightsTableReturn flights={flights} returnFlights={returnFlights}/>
 							: <FlightsTable flights={flights}/>}
+						</div>
 					</Route>
 					<Route path="/redirecting">
 						<Redirection/>

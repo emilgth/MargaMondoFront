@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="devbranch">
+      <change afterPath="$PROJECT_DIR$/src/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logo2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/margamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/purple.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FlightsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redirection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redirection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +36,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1TCGGZ8VSxeynSyv0SxrqjChtTR" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -174,6 +186,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="admin login FIXED" />
     <MESSAGE value="implemented a simple table for all flights and a fetch method&#10;currently only displays dummy data" />
     <MESSAGE value="flightSearch fully implemented" />

@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.logo {
+width:25%; height:25%; max-height: 25%; max-width: 25%;
+}
+
+.loading-gif {
+  display: block;
+  margin: 0 auto;
+}
+
+.margmond {
+  width:25%; height: 25%; background-color: #932794;
+}
+
+.bg-orange {
+  background-color: #f8941d;
+}
+
+.bg-white {
+  background-color: antiquewhite;
+}
+
+.bg-spa {
+  background-color: #932794;
+}

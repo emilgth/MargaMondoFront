@@ -10,8 +10,7 @@ export const Redirection = () => {
 
     return(
         <div>
-            <img src={loading} alt="loading..."/>
-
+            <img className={"loading-gif"} src={loading} alt="loading..."/>
         </div>
 
     );

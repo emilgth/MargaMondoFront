@@ -60,7 +60,7 @@ export const FlightsTable = ({flights}) => {
 	};
 
 	return (
-		<div>
+		<div className={"mt-5 shadow-sm bg-white rounded p-2"}>
 			<h2>All Flights</h2>
 			<BootstrapTable
 				striped
