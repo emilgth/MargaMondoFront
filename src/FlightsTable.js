@@ -1,160 +1,185 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import filterFactory from 'react-bootstrap-table2-filter';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import facade from "./apiFacade";
-import {Redirection} from "./Redirection";
-import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
-export const FlightsTable = ({flights}) => {
+export const FlightsTable = ({flights, setSelectedFlight}) => {
+    const columns = [{
+        dataField: 'departureAirportName',
+        text: 'Departure Location',
+    }, {
+        dataField: 'arrivalAirportName',
+        text: 'Arrival Location',
+    }, {
+        dataField: 'departureTime',
+        text: 'Departure Time',
+        sort: true,
 
-	const columns = [{
-		dataField: 'departureAirportName',
-		text: 'Departure Location',
-	}, {
-		dataField: 'arrivalAirportName',
-		text: 'Arrival Location',
-	}, {
-		dataField: 'departureTime',
-		text: 'Departure Time',
-		sort: true,
+        sortFunc: (date1, date2, order, dataField) => {
+            let aa = new Date(date1);
+            let bb = new Date(date2);
+            if (order === 'asc') {
+                return bb - aa;
+            }
+            return aa - bb; // desc
+        }
+    }, {
+        dataField: 'arrivalTime',
+        text: 'Arrival Time',
 
-		sortFunc: (date1, date2, order, dataField) => {
-			let aa = new Date(date1);
-			let bb = new Date(date2);
-			if (order === 'asc') {
-				return bb - aa;
-			}
-			return aa - bb; // desc
+    }, {
+        dataField: 'flightDuration',
+        text: 'Flight Duration',
+        sort: true
+    }, {
+        dataField: 'price',
+        text: 'Price',
+        sort: true
+    }, {
+        dataField: 'airline',
+        text: 'Airline'
+    }];
+
+    const expandRow = {
+        // showExpandColumn: false,
+        onlyOneExpanding: true,
+        renderer: row => {
+            setSelectedFlight(row);
+            return (
+                <div>
+                    <p>
+                        <NavLink to="/redirecting">Redirect to booking</NavLink>'
+                    </p>
+                </div>
+            )
+        }
+    };
+
+	const rowEvents = {
+		onClick: (e, row) => {
+			console.log(row);
+			setSelectedFlight(row);
 		}
-	}, {
-		dataField: 'arrivalTime',
-		text: 'Arrival Time',
-
-	}, {
-		dataField: 'flightDuration',
-		text: 'Flight Duration',
-		sort: true
-	}, {
-		dataField: 'price',
-		text: 'Price',
-		sort: true
-	}, {
-		dataField: 'airline',
-		text: 'Airline'
-	}];
-
-
-	const expandRow = {
-		// showExpandColumn: false,
-		onlyOneExpanding: true,
-		renderer: row => (
-			<div>
-				<p>
-					<NavLink to="/redirecting">Redirect to booking</NavLink>'
-				</p>
-			</div>
-		)
 	};
 
-	return (
-		<div>
-			<h2>All Flights</h2>
-			<BootstrapTable
-				striped
-				hover
-				bootstrap4
-				keyField={"id"}
-				data={flights}
-				columns={columns}
-				filter={filterFactory()}
-				pagination={paginationFactory()}
-				expandRow={ expandRow }
-			/>
+    return (
+        <div>
+            <h2>All Flights</h2>
+            <BootstrapTable
+                striped
+                hover
+                bootstrap4
+                keyField={"id"}
+                data={flights}
+                columns={columns}
+                filter={filterFactory()}
+                pagination={paginationFactory()}
+                expandRow={expandRow}
+				rowEvents={rowEvents}
+            />
 
-		</div>
-	);
+        </div>
+    );
 };
 
-export const FlightsTableReturn = ({flights, returnFlights}) => {
+export const FlightsTableReturn = ({flights, returnFlights, setSelectedFlight, setSelectedReturnFlight}) => {
 
-	FlightsTable(flights);
+    FlightsTable(flights);
 
-	const columns = [{
-		dataField: 'departureAirportName',
-		text: 'Departure Location',
-	}, {
-		dataField: 'arrivalAirportName',
-		text: 'Arrival Location',
-	}, {
-		dataField: 'departureTime',
-		text: 'Departure Time',
-		sort: true,
+    const columns = [{
+        dataField: 'departureAirportName',
+        text: 'Departure Location',
+    }, {
+        dataField: 'arrivalAirportName',
+        text: 'Arrival Location',
+    }, {
+        dataField: 'departureTime',
+        text: 'Departure Time',
+        sort: true,
 
-		sortFunc: (date1, date2, order, dataField) => {
-			let aa = new Date(date1);
-			let bb = new Date(date2);
-			if (order === 'asc') {
-				return bb - aa;
-			}
-			return aa - bb; // desc
+        sortFunc: (date1, date2, order, dataField) => {
+            let aa = new Date(date1);
+            let bb = new Date(date2);
+            if (order === 'asc') {
+                return bb - aa;
+            }
+            return aa - bb; // desc
+        }
+    }, {
+        dataField: 'arrivalTime',
+        text: 'Arrival Time',
+
+    }, {
+        dataField: 'flightDuration',
+        text: 'Flight Duration'
+    }, {
+        dataField: 'price',
+        text: 'Price',
+        sort: true
+    }, {
+        dataField: 'airline',
+        text: 'Airline'
+    }];
+
+    const expandRow = {
+        // showExpandColumn: false,
+        onlyOneExpanding: true,
+        renderer: row => (
+            <div>
+                <p>
+                    <NavLink to="/redirecting">Redirect to booking</NavLink>
+                </p>
+            </div>
+        )
+    };
+
+    const rowEvents = {
+    	onClick: (e, row) => {
+    		console.log(row);
+			setSelectedFlight(row);
 		}
-	}, {
-		dataField: 'arrivalTime',
-		text: 'Arrival Time',
-
-	}, {
-		dataField: 'flightDuration',
-		text: 'Flight Duration'
-	}, {
-		dataField: 'price',
-		text: 'Price',
-		sort: true
-	}, {
-		dataField: 'airline',
-		text: 'Airline'
-	}];
-
-	const expandRow = {
-		// showExpandColumn: false,
-		onlyOneExpanding: true,
-		renderer: row => (
-			<div>
-				<p>
-					<NavLink to="/redirecting">Redirect to booking</NavLink>
-				</p>
-			</div>
-		)
 	};
 
-	return (
-		<div>
-			<h2>All Flights</h2>
-			<BootstrapTable
-				striped
-				hover
-				bootstrap4
-				keyField={"id"}
-				data={flights}
-				columns={columns}
-				filter={filterFactory()}
-				pagination={paginationFactory()}
-				expandRow={expandRow}
-			/>
-			<h2>Return Flights</h2>
-			<BootstrapTable
-				striped
-				hover
-				bootstrap4
-				keyField={"id"}
-				data={returnFlights}
-				columns={columns}
-				filter={filterFactory()}
-				pagination={paginationFactory()}
-				expandRow={expandRow}
-			/>
-		</div>
-	);
+    const rowReturnEvents = {
+    	onClick: (e, row) => {
+    		console.log(row);
+    		setSelectedReturnFlight(row);
+		}
+	};
+
+    return (
+        <div>
+            <h2>All Flights</h2>
+            <BootstrapTable
+                striped
+                hover
+                bootstrap4
+                id={"flightTable"}
+                keyField={"id"}
+                data={flights}
+                columns={columns}
+                filter={filterFactory()}
+                pagination={paginationFactory()}
+                expandRow={expandRow}
+                rowEvents={rowEvents}
+            />
+            <h2>Return Flights</h2>
+            <BootstrapTable
+                striped
+                hover
+                bootstrap4
+                name={"returnTable"}
+                keyField={"id"}
+                data={returnFlights}
+                columns={columns}
+                filter={filterFactory()}
+                pagination={paginationFactory()}
+                expandRow={expandRow}
+				rowEvents={rowReturnEvents}
+            />
+        </div>
+    );
 };

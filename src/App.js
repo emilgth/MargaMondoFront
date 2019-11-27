@@ -18,6 +18,8 @@ const Header = () => {
 };
 
 function App() {
+	const [selectedFlight, setSelectedFlight] = useState(null);
+	const [selectedReturnFlight, setSelectedReturnFlight] = useState(null);
     const [returnChecked, setReturnChecked] = useState("off");
 	const [originalFlights, setOriginalFlights] = useState([]); //this is the list of flights retrieved by the fetch function, it shouldn't be altered by anything, but the fetch function
 	const [originalReturnFlights, setOriginalReturnFlights] = useState([]);
@@ -103,6 +105,37 @@ function App() {
 		setReturnFlights(newReturnFlights);
 	};
 
+	const SelectedFlightsRenderer = () => {
+		if (selectedFlight && selectedReturnFlight) {
+			return (
+				<div>
+					<h3>Your ticket</h3>
+					<p>
+						{selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
+					</p>
+					<p>
+						{selectedReturnFlight.airline} {selectedReturnFlight.departureTime} {selectedReturnFlight.duration} {selectedReturnFlight.departureAirportCode}->{selectedReturnFlight.arrivalAirportCode}
+					</p>
+					<p>
+						<NavLink to="/redirecting">Redirect to booking</NavLink>
+					</p>
+				</div>
+			)
+		} if (selectedFlight && !selectedReturnFlight) {
+			return (
+				<div>
+					<h3>Your ticket</h3>
+					<p>
+						{selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
+					</p>
+					<p>
+						<NavLink to="/redirecting">Redirect to booking</NavLink>
+					</p>
+				</div>
+			)
+		} else return null
+	};
+
 	return (
 		<div>
 			<Router>
@@ -136,6 +169,7 @@ function App() {
 				<Switch>
 					<Route exact path={"/"}>
 						<Welcome/>
+						<SelectedFlightsRenderer/>
 						<label>
 							<input
 								type={"checkbox"}
@@ -147,8 +181,8 @@ function App() {
 							? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights} setReturnFlights={setReturnFlights} setOriginalReturnFlights={setOriginalReturnFlights}/>
 							: <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
 						{returnChecked === "on"
-							? <FlightsTableReturn flights={flights} returnFlights={returnFlights}/>
-							: <FlightsTable flights={flights}/>}
+							? <FlightsTableReturn flights={flights} returnFlights={returnFlights} setSelectedFlight={setSelectedFlight} setSelectedReturnFlight={setSelectedReturnFlight}/>
+							: <FlightsTable flights={flights} setSelectedFlight={setSelectedFlight}/>}
 					</Route>
 					<Route path="/redirecting">
 						<Redirection/>
