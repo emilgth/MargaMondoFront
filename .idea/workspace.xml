@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/checkboxFacade.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/checkboxFacade.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +117,7 @@
       <workItem from="1574200753311" duration="4000" />
       <workItem from="1574272741108" duration="2703000" />
       <workItem from="1574668563883" duration="691000" />
-      <workItem from="1574846702859" duration="912000" />
+      <workItem from="1574846702859" duration="2519000" />
     </task>
     <task id="LOCAL-00001" summary="admin login FIXED">
       <created>1573555342081</created>
@@ -209,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574805661941</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="code refactoring in checkboxFacade.js">
+      <created>1574847867128</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1574847867128</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,33 +248,34 @@
     <MESSAGE value="extracted airlines checkbox renderblock thing" />
     <MESSAGE value="flightClass checkboxes implemented and minor fixes :)" />
     <MESSAGE value="small fix teehee" />
-    <option name="LAST_COMMIT_MESSAGE" value="small fix teehee" />
+    <MESSAGE value="code refactoring in checkboxFacade.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="code refactoring in checkboxFacade.js" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574805661250">
+    <state x="492" y="118" key="CommitChangelistDialog2" timestamp="1574847866472">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574805661250" />
+    <state x="492" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1574847866472" />
     <state x="1220" y="267" key="FileChooserDialogImpl" timestamp="1574779207154">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1220" y="267" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1574779207154" />
-    <state width="1876" height="281" key="GridCell.Tab.0.bottom" timestamp="1574807247997">
+    <state width="1876" height="281" key="GridCell.Tab.0.bottom" timestamp="1574849043043">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1574807247997" />
-    <state width="1876" height="281" key="GridCell.Tab.0.center" timestamp="1574807247997">
+    <state width="1876" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1574849043043" />
+    <state width="1876" height="281" key="GridCell.Tab.0.center" timestamp="1574849043043">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1574807247997" />
-    <state width="1876" height="281" key="GridCell.Tab.0.left" timestamp="1574807247997">
+    <state width="1876" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1574849043043" />
+    <state width="1876" height="281" key="GridCell.Tab.0.left" timestamp="1574849043042">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1574807247997" />
-    <state width="1876" height="281" key="GridCell.Tab.0.right" timestamp="1574807247997">
+    <state width="1876" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1574849043042" />
+    <state width="1876" height="281" key="GridCell.Tab.0.right" timestamp="1574849043043">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1574807247997" />
+    <state width="1876" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1574849043043" />
     <state width="1876" height="348" key="GridCell.Tab.1.bottom" timestamp="1574806937368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
