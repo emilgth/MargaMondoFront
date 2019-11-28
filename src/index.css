@@ -36,6 +36,7 @@ width:25%; height:25%; max-height: 25%; max-width: 25%;
 
 .bg-spa {
   background-image: linear-gradient(#911d61, #5c195d);
+  background-attachment: fixed;
 }
 
 .navbar {
