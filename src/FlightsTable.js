@@ -46,24 +46,24 @@ export const FlightsTable = ({flights, setSelectedFlight}) => {
     }];
 
 
-	const expandRow = {
-		// showExpandColumn: false,
-		onlyOneExpanding: true,
-		renderer: row => (
-			<div>
-					<a href="http://localhost:3000/redirecting" button type="button" class="button">Redirect to
-						booking</a>
-					<p>Class: {row["flightClass"]}</p>
-			</div>
-		)
-	};
+    const expandRow = {
+        // showExpandColumn: false,
+        onlyOneExpanding: true,
+        renderer: row => (
+            <div>
+                <a href="http://localhost:3000/redirecting" button type="button" class="button">Redirect to
+                    booking</a>
+                <p>Class: {row["flightClass"]}</p>
+            </div>
+        )
+    };
 
-	const rowEvents = {
-		onClick: (e, row) => {
-			console.log(row);
-			setSelectedFlight(row);
-		}
-	};
+    const rowEvents = {
+        onClick: (e, row) => {
+            console.log(row);
+            setSelectedFlight(row);
+        }
+    };
 
     return (
         <div className={"mt-5 bg-marge rounded p-2"}>
@@ -79,11 +79,55 @@ export const FlightsTable = ({flights, setSelectedFlight}) => {
                 filter={filterFactory()}
                 pagination={paginationFactory()}
                 expandRow={expandRow}
-				rowEvents={rowEvents}
+                rowEvents={rowEvents}
             />
 
         </div>
     );
+};
+
+export const NewFlightsTable = ({flights}) => {
+    return (
+        <div>
+            {flights.map(flight => {
+                return <div className={"container bg-marge rounded shadow-lg p-5 mb-3"}>
+                    <div className={"row"}>
+                        <div className={"col"}>
+                            <h4><strong>{flight.airline}</strong></h4>
+                        </div>
+                        <div className={"col"}>
+                            <p className={"text-right"}> {flight.departureAirportCode} - {flight.arrivalAirportCode}</p>
+                        </div>
+                    </div>
+                    <div className={"row"}>
+                        <div className={"col"}><p><strong>Departure:</strong> {flight.departureTime.slice(0, 21)}</p></div>
+                        <div className={"col"}>
+                            <p className={"text-right"}><strong>Flight duration:</strong> {flight.flightDuration.slice(0, 5)}</p>
+                        </div>
+                    </div>
+                    <div className={"row"}>
+                        <div className={"col"}><p><strong>Arrival:</strong> {flight.arrivalTime.slice(0, 21)}</p></div>
+
+                        <div className={"col"}>
+                            <h4 className={"text-right"}><strong>Price:</strong> ${flight.price},-</h4>
+                        </div>
+                    </div>
+                    <div className={"row"}>
+                        <div className={"col"}>
+                            <em>{flight.flightClass}</em>
+                        </div>
+                        <div className={"col"}>
+                            <button className={"btn-lg btn-success float-right"}>Book</button>
+                        </div>
+
+                    </div>
+
+
+                </div>;
+            })}
+        </div>
+    );
+
 };
 
 export const FlightsTableReturn = ({flights, returnFlights, setSelectedFlight, setSelectedReturnFlight}) => {
@@ -137,19 +181,19 @@ export const FlightsTableReturn = ({flights, returnFlights, setSelectedFlight, s
         )
     };
 
-	const rowEvents = {
-		onClick: (e, row) => {
-			console.log(row);
-			setSelectedFlight(row);
-		}
-	};
+    const rowEvents = {
+        onClick: (e, row) => {
+            console.log(row);
+            setSelectedFlight(row);
+        }
+    };
 
-	const rowReturnEvents = {
-		onClick: (e, row) => {
-			console.log(row);
-			setSelectedReturnFlight(row);
-		}
-	};
+    const rowReturnEvents = {
+        onClick: (e, row) => {
+            console.log(row);
+            setSelectedReturnFlight(row);
+        }
+    };
 
     return (
         <div className={"mt-5 bg-marge rounded p-2"}>
@@ -179,7 +223,7 @@ export const FlightsTableReturn = ({flights, returnFlights, setSelectedFlight, s
                 filter={filterFactory()}
                 pagination={paginationFactory()}
                 expandRow={expandRow}
-				rowEvents={rowReturnEvents}
+                rowEvents={rowReturnEvents}
             />
         </div>
     );
