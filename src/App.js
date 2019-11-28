@@ -164,11 +164,11 @@ function App() {
                         <div className={"mt-5 rounded p-2"}>
                             <div className={"row"}>
                                 <div className={"col-2"}>
-                                    <div className={"bg-marge shadow-lg container rounded mt-2 p-2"}>
+                                    <div className={"bg-marge shadow-lg container rounded p-2"}>
                                         {renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
 
                                     </div>
-                                    <div className={"bg-marge shadow-lg container rounded mt-2 p-2"}>
+                                    <div className={"bg-marge shadow-lg container rounded mt-3 p-2"}>
 
                                     <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox}
                                                              setFlights={setFlights} originalFlights={originalFlights}
@@ -177,20 +177,23 @@ function App() {
                                                              setFlightClasses={setFlightClasses}/>
                                         </div>
                                 </div>
-                                <div className={"col-10"}><SelectedFlightsRenderer/>
-                                    <label>
-                                        <input
+                                <div className={"col-10"}>
+                                    <SelectedFlightsRenderer/>
+                                    <div className={"container bg-marge p-2 rounded shadow-lg mb-3"}>
+
+                                            <input className={"form-check-inline"}
                                             type={"checkbox"}
                                             onChange={() => returnChecked === "off"
                                                 ? setReturnChecked("on") : setReturnChecked("off")}/>Return
-                                        ticket
-                                        <input className={"form-control-inline ml-5 mr-1"}
-                                               id={"numberOfPassengersInput"}
-                                               type={"number"}
-                                               placeholder={1}
-                                               onChange={() => setNumberOfPassengers(document.getElementById("numberOfPassengersInput").value)}/>Number of passengers
+                                            ticket
+                                            <input className={"form-control-inline rounded ml-5 mr-1"}
+                                                   id={"numberOfPassengersInput"}
+                                                   type={"number"}
+                                                   placeholder={1}
+                                                   onChange={() => setNumberOfPassengers(document.getElementById("numberOfPassengersInput").value)}/>Number
+                                            of passengers
 
-                                    </label>
+                                    </div>
                                     <NewFlightsTable flights={flights}/>
                                     {returnChecked === "on"
                                         ?
