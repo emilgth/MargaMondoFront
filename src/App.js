@@ -31,7 +31,7 @@ const Header = () => {
         <div>
 			<nav className="navbar navbar-expand-sm bg-orange shadow-lg navbar-dark">
 				<a className="navbar-brand" href="http://localhost:3000/">
-					<img src={Logo} className="logo"/>
+					<img src={Logo} className="logo" alt={"MargaMondo"}/>
 				</a>
 			</nav>
         </div>
