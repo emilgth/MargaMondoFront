@@ -7,8 +7,6 @@ import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
 import Logo from "./purple.svg"
-import Margamondo from "./margamond.png"
-import {Footer} from "./Footer";
 import banner from "./output-onlinepngtools.png"
 import facebook from "./Facebook.PNG";
 import twitter from "./Twitter.PNG";
@@ -17,8 +15,8 @@ import instagram from "./Instagram.png";
 
 import {
     handleAirlinesCheckbox,
-    renderAirlinesCheckboxes,
     handleFlightClassCheckbox,
+    renderAirlinesCheckboxes,
     RenderClassesCheckboxes
 } from "./checkboxFacade";
 
@@ -31,8 +29,8 @@ const Welcome = () => {
                 <img src={banner} style={{width: "20%"}} alt={""}/>
                 <div style={{marginLeft: "64%"}}>
                     <img src={facebook} className={"mr-2 img-fluid"} style={{height: 50}} alt={""}/>
-                    <img src={twitter}   className={"mr-2"} style={{height: 50}} alt=""/>
-                    <img src={instagram}  style={{height: 50}} alt=""/></div>
+                    <img src={twitter} className={"mr-2"} style={{height: 50}} alt=""/>
+                    <img src={instagram} style={{height: 50}} alt=""/></div>
             </div>
         </div>
     );
@@ -41,11 +39,11 @@ const Welcome = () => {
 const Header = () => {
     return (
         <div>
-			<nav className="navbar navbar-expand-sm bg-orange shadow-lg navbar-dark">
-				<a className="navbar-brand" href="http://localhost:3000/">
-					<img src={Logo} className="logo" alt={"MargaMondo"}/>
-				</a>
-			</nav>
+            <nav className="navbar navbar-expand-sm bg-orange shadow-lg navbar-dark">
+                <a className="navbar-brand" href="http://localhost:3000/">
+                    <img src={Logo} className="logo" alt={"MargaMondo"}/>
+                </a>
+            </nav>
         </div>
     )
 };
@@ -63,6 +61,7 @@ function App() {
     const [airlinesUnchecked, setAirlinesUnchecked] = useState([]);
     const [flightClasses, setFlightClasses] = useState([]);
     const [flightClassesUnchecked, setFlightClassesUnchecked] = useState([]);
+    const [numberOfPassengers, setNumberOfPassengers] = useState(1);
 
     useEffect(() => {
         facade.fetchAllFlights().then(data => {
@@ -120,7 +119,7 @@ function App() {
     const handleClassCheckbox = handleFlightClassCheckbox(flightClasses, setFlightClasses, setFlightClassesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights, airlinesUnchecked);
     const SelectedFlightsRenderer = () => {
         if (selectedFlight && selectedReturnFlight) {
-            let returnPrice = selectedFlight.price + selectedReturnFlight.price;
+            let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfPassengers;
             return (
                 <div>
                     <h3>Your ticket</h3>
@@ -137,6 +136,7 @@ function App() {
             )
         }
         if (selectedFlight && !selectedReturnFlight) {
+            let singlePrice = selectedFlight.price * numberOfPassengers;
             return (
                 <div>
                     <h3>Your ticket</h3>
@@ -144,7 +144,7 @@ function App() {
                         {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
                     </p>
                     <p>
-                        ${selectedFlight.price},- <NavLink to="/redirecting">Redirect to booking</NavLink>
+                        ${singlePrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
                     </p>
                 </div>
             )
@@ -168,13 +168,18 @@ function App() {
                     <Route exact path={"/"}>
                         <div className={"container shadow-lg mt-5 bg-marge rounded p-2"}>
                             <SelectedFlightsRenderer/>
-                            <label>
+                            <div className={"container shadow-lg mt-5 mb-1 bg-marge rounded p-2"}>
                                 <input
                                     type={"checkbox"}
                                     onChange={() => returnChecked === "off"
                                         ? setReturnChecked("on") : setReturnChecked("off")}/>Return
                                 ticket
-                            </label>
+                                <input className={"form-control-inline ml-5 mr-1"}
+                                       id={"numberOfPassengersInput"}
+                                       type={"number"}
+                                       placeholder={1}
+                                       onChange={() => setNumberOfPassengers(document.getElementById("numberOfPassengersInput").value)}/>Number of passengers
+                            </div>
                             {returnChecked === "on"
                                 ? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights}
                                                       setReturnFlights={setReturnFlights}
