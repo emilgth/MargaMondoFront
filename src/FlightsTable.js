@@ -68,6 +68,7 @@ export const FlightsTable = ({flights, setSelectedFlight}) => {
     return (
         <div className={"mt-5 bg-marge rounded p-2"}>
             <h2>All Flights</h2>
+            
             <BootstrapTable
                 striped
                 hover
