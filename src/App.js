@@ -108,6 +108,7 @@ function App() {
     const handleClassCheckbox = handleFlightClassCheckbox(flightClasses, setFlightClasses, setFlightClassesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights, airlinesUnchecked);
 	const SelectedFlightsRenderer = () => {
 		if (selectedFlight && selectedReturnFlight) {
+			let returnPrice = selectedFlight.price + selectedReturnFlight.price;
 			return (
 				<div>
 					<h3>Your ticket</h3>
@@ -118,7 +119,7 @@ function App() {
 						{selectedReturnFlight.airline} {selectedReturnFlight.departureTime} {selectedReturnFlight.duration} {selectedReturnFlight.departureAirportCode}->{selectedReturnFlight.arrivalAirportCode}
 					</p>
 					<p>
-						<NavLink to="/redirecting">Redirect to booking</NavLink>
+						${returnPrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
 					</p>
 				</div>
 			)
@@ -130,7 +131,7 @@ function App() {
 						{selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
 					</p>
 					<p>
-						<NavLink to="/redirecting">Redirect to booking</NavLink>
+						${selectedFlight.price},- <NavLink to="/redirecting">Redirect to booking</NavLink>
 					</p>
 				</div>
 			)
