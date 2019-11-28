@@ -8,6 +8,7 @@ import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
 import Logo from "./purple.svg"
 import Margamondo from "./margamond.png"
+import {Footer} from "./Footer";
 
 
 import {
@@ -37,6 +38,8 @@ const Header = () => {
         </div>
     )
 };
+
+
 
 
 function App() {
@@ -140,6 +143,7 @@ function App() {
 	return (
 		<div className={"bg-spa"}>
 			<Router>
+
 				<Header/>
 				{/*todo refactor into separate component */}
 				<div className={"bg-marge shadow-lg container rounded mt-2 p-2"}>
@@ -169,10 +173,12 @@ function App() {
 								: <FlightsTable flights={flights} setSelectedFlight={setSelectedFlight}/>}
 						</div>
 					</Route>
+
 					<Route path="/redirecting">
 						<Redirection/>
 					</Route>
 				</Switch>
+				<Footer/>
 			</Router>
 		</div>
 	);
