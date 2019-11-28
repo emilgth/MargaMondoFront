@@ -31,7 +31,8 @@ width:25%; height:25%; max-height: 25%; max-width: 25%;
 }
 
 .bg-marge {
-  background-color: white;
+  /*background-color: white;*/
+  background-image: linear-gradient(white, mistyrose);
 }
 
 .bg-spa {

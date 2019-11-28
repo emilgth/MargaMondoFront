@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import {FlightsTable, FlightsTableReturn} from "./FlightsTable";
+import {FlightsTable, FlightsTableReturn, NewFlightsTable} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
@@ -71,7 +71,9 @@ function App() {
             }
             let combinedArrays = [...data[0], ...data[1]];
             let flightsFormattedTime = combinedArrays.map(flight => {
+                flight.arrivalTime = new Date(Date.parse(flight.departureTime) + flight.flightDuration).toString();
                 flight.flightDuration = msToTime(flight.flightDuration);
+                flight.departureTime = new Date(Date.parse(flight.departureTime)).toString();
                 if (flight.flightClass === undefined) {
                     flight.flightClass = "Unknown";
                 }
@@ -156,35 +158,49 @@ function App() {
                 <Header/>
 
                 {/*todo refactor into separate component */}
-                <div className={"bg-marge shadow-lg container rounded mt-2 p-2"}>
-                    {renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
-                    <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox}
-                                             setFlights={setFlights} originalFlights={originalFlights}
-                                             setReturnFlights={setReturnFlights}
-                                             originalReturnFlights={originalReturnFlights}
-                                             setFlightClasses={setFlightClasses}/>
-                </div>
+
                 <Switch>
                     <Route exact path={"/"}>
-                        <div className={"container shadow-lg mt-5 bg-marge rounded p-2"}>
-                            <SelectedFlightsRenderer/>
-                            <label>
-                                <input
-                                    type={"checkbox"}
-                                    onChange={() => returnChecked === "off"
-                                        ? setReturnChecked("on") : setReturnChecked("off")}/>Return
-                                ticket
-                            </label>
-                            {returnChecked === "on"
-                                ? <FlightSearchReturn setFlights={setFlights} setOriginalFlights={setOriginalFlights}
-                                                      setReturnFlights={setReturnFlights}
-                                                      setOriginalReturnFlights={setOriginalReturnFlights}/>
-                                : <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
-                            {returnChecked === "on"
-                                ? <FlightsTableReturn flights={flights} returnFlights={returnFlights}
-                                                      setSelectedFlight={setSelectedFlight}
-                                                      setSelectedReturnFlight={setSelectedReturnFlight}/>
-                                : <FlightsTable flights={flights} setSelectedFlight={setSelectedFlight}/>}
+                        <div className={"mt-5 rounded p-2"}>
+                            <div className={"row"}>
+                                <div className={"col-2"}>
+                                    <div className={"bg-marge shadow-lg container rounded mt-2 p-2"}>
+                                        {renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
+
+                                    </div>
+                                    <div className={"bg-marge shadow-lg container rounded mt-2 p-2"}>
+
+                                    <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox}
+                                                             setFlights={setFlights} originalFlights={originalFlights}
+                                                             setReturnFlights={setReturnFlights}
+                                                             originalReturnFlights={originalReturnFlights}
+                                                             setFlightClasses={setFlightClasses}/>
+                                        </div>
+                                </div>
+                                <div className={"col-10"}><SelectedFlightsRenderer/>
+                                    <label>
+                                        <input
+                                            type={"checkbox"}
+                                            onChange={() => returnChecked === "off"
+                                                ? setReturnChecked("on") : setReturnChecked("off")}/>Return
+                                        ticket
+                                    </label>
+                                    <NewFlightsTable flights={flights}/>
+                                    {returnChecked === "on"
+                                        ?
+                                        <FlightSearchReturn setFlights={setFlights}
+                                                            setOriginalFlights={setOriginalFlights}
+                                                            setReturnFlights={setReturnFlights}
+                                                            setOriginalReturnFlights={setOriginalReturnFlights}/>
+                                        :
+                                        <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
+                                    {returnChecked === "on"
+                                        ? <FlightsTableReturn flights={flights} returnFlights={returnFlights}
+                                                              setSelectedFlight={setSelectedFlight}
+                                                              setSelectedReturnFlight={setSelectedReturnFlight}/>
+                                        : <FlightsTable flights={flights} setSelectedFlight={setSelectedFlight}/>}
+                                </div>
+                            </div>
                         </div>
                     </Route>
                     <Route path="/redirecting">

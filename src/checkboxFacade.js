@@ -73,7 +73,7 @@ function resetAirlines(setFlights, originalFlights, setReturnFlights, originalRe
 export function renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines) {
     return <div>
         {airlines.map(airline =>
-            <div key={airline.airline} className={"form-check-inline"}>
+            <div key={airline.airline} className={"form-check"}>
                 <input id={airline}
                        className={"form-check-input"}
                        type={"checkbox"}
@@ -82,10 +82,10 @@ export function renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, o
                        checked={airline.checked}/>
                 <label className={"form-check-label"}>{airline.airline}</label>
             </div>)}
-        <button className={"button"} onClick={() => {
-            resetAirlines(setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines);
-        }}>Reset
-        </button>
+        {/*<button className={"button"} onClick={() => {*/}
+        {/*    resetAirlines(setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines);*/}
+        {/*}}>Reset*/}
+        {/*</button>*/}
         <br/>
     </div>;
 }
@@ -116,7 +116,7 @@ function resetFlightClasses(setFlights, originalFlights, setReturnFlights, origi
 export const RenderClassesCheckboxes = ({flightClasses, handleClassCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setFlightClasses}) => {
     return <div>
         {flightClasses.map(flightClass =>
-            <div key={flightClass.flightClass} className={"form-check-inline"}>
+            <div key={flightClass.flightClass} className={"form-check"}>
                 <input id={flightClass}
                        className={"form-check-input"}
                        type={"checkbox"}
@@ -125,10 +125,10 @@ export const RenderClassesCheckboxes = ({flightClasses, handleClassCheckbox, set
                        checked={flightClass.checked}/>
                 <label className={"form-check-label"}>{flightClass.flightClass}</label>
             </div>)}
-        <button className={"button"} onClick={() => {
-            resetFlightClasses(setFlights, originalFlights, setReturnFlights, originalReturnFlights, setFlightClasses);
-        }}>Reset
-        </button>
+        {/*<button className={"button"} onClick={() => {*/}
+        {/*    resetFlightClasses(setFlights, originalFlights, setReturnFlights, originalReturnFlights, setFlightClasses);*/}
+        {/*}}>Reset*/}
+        {/*</button>*/}
         <br/>
     </div>;
 };
