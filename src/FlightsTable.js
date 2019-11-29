@@ -12,7 +12,7 @@ export const NewFlightsTable = ({flights, setSelectedFlight}) => {
     return (
         <div>
             {flights.map(flight => {
-                return <div className={"container bg-marge rounded shadow-lg p-5 mb-3"}>
+                return <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
                         <div className={"col"}>
                             <h4><strong>{flight.airline}</strong></h4>
