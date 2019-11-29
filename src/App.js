@@ -124,7 +124,7 @@ function App() {
         if (selectedFlight && selectedReturnFlight) {
             let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfPassengers;
             return (
-                <div className={"container bg-marge p-2 rounded shadow-lg mb-3"}>
+                <div className={"bg-marge p-2 rounded shadow-lg mb-3"}>
                     <h3>Your ticket</h3>
                     <p>
                         {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
@@ -141,7 +141,7 @@ function App() {
         if (selectedFlight && !selectedReturnFlight) {
             let singlePrice = selectedFlight.price * numberOfPassengers;
             return (
-                <div className={"container bg-marge p-2 rounded shadow-lg mb-3"}>
+                <div className={"bg-marge p-2 rounded shadow-lg mb-3"}>
                     <h3>Your ticket</h3>
                     <p>
                         {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
@@ -183,9 +183,6 @@ function App() {
         <div className={"bg-spa"}>
             <Router>
                 <Header/>
-
-                {/*todo refactor into separate component */}
-
                 <Switch>
                     <Route exact path={"/"}>
                         <div className={"mt-5 p-2"}>
@@ -207,7 +204,8 @@ function App() {
                                     </div>
                                 </div>
                                 <div className={"col-10"}>
-                                    <div className={"container-fluid"}><SelectedFlightsRenderer/>
+                                    <div className={"container-fluid"}>
+                                        <SelectedFlightsRenderer/>
                                         <div className={"bg-marge p-2 rounded shadow-lg mb-3"}>
                                             <div>
                                                 <div className={"form-inline mb-1"}>
