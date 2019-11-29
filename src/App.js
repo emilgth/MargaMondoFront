@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import {FlightsTable, FlightsTableReturn, NewFlightsTable} from "./FlightsTable";
+import {FlightsTable, FlightsTableReturn, NewFlightsTable, NewFlightsTableReturn} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
-import {Redirection} from "./Redirection";
+import './App.css';
+import {Redirection} from "./Redirection"
 import Logo from "./purple.svg"
 import banner from "./output-onlinepngtools.png"
 import facebook from "./Facebook.PNG";
@@ -123,7 +124,7 @@ function App() {
         if (selectedFlight && selectedReturnFlight) {
             let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfPassengers;
             return (
-                <div>
+                <div className={"container bg-marge p-2 rounded shadow-lg mb-3"}>
                     <h3>Your ticket</h3>
                     <p>
                         {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
@@ -140,7 +141,7 @@ function App() {
         if (selectedFlight && !selectedReturnFlight) {
             let singlePrice = selectedFlight.price * numberOfPassengers;
             return (
-                <div>
+                <div className={"container bg-marge p-2 rounded shadow-lg mb-3"}>
                     <h3>Your ticket</h3>
                     <p>
                         {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
@@ -170,31 +171,31 @@ function App() {
                                     </div>
                                     <div className={"bg-marge shadow-lg container rounded mt-3 p-2"}>
 
-                                    <RenderClassesCheckboxes flightClasses={flightClasses} handleClassCheckbox={handleClassCheckbox}
-                                                             setFlights={setFlights} originalFlights={originalFlights}
-                                                             setReturnFlights={setReturnFlights}
-                                                             originalReturnFlights={originalReturnFlights}
-                                                             setFlightClasses={setFlightClasses}/>
-                                        </div>
+                                        <RenderClassesCheckboxes flightClasses={flightClasses}
+                                                                 handleClassCheckbox={handleClassCheckbox}
+                                                                 setFlights={setFlights}
+                                                                 originalFlights={originalFlights}
+                                                                 setReturnFlights={setReturnFlights}
+                                                                 originalReturnFlights={originalReturnFlights}
+                                                                 setFlightClasses={setFlightClasses}/>
+                                    </div>
                                 </div>
                                 <div className={"col-10"}>
                                     <SelectedFlightsRenderer/>
                                     <div className={"container bg-marge p-2 rounded shadow-lg mb-3"}>
 
-                                            <input className={"form-check-inline"}
-                                            type={"checkbox"}
-                                            onChange={() => returnChecked === "off"
-                                                ? setReturnChecked("on") : setReturnChecked("off")}/>Return
-                                            ticket
-                                            <input className={"form-control-inline rounded ml-5 mr-1"}
-                                                   id={"numberOfPassengersInput"}
-                                                   type={"number"}
-                                                   placeholder={1}
-                                                   onChange={() => setNumberOfPassengers(document.getElementById("numberOfPassengersInput").value)}/>Number
-                                            of passengers
-
+                                        <input className={"form-check-inline"}
+                                               type={"checkbox"}
+                                               onChange={() => returnChecked === "off"
+                                                   ? setReturnChecked("on") : setReturnChecked("off")}/>
+                                        Return ticket
+                                        <input className={"form-control-inline rounded ml-5 mr-1"}
+                                               id={"numberOfPassengersInput"}
+                                               type={"number"}
+                                               placeholder={1}
+                                               onChange={() => setNumberOfPassengers(document.getElementById("numberOfPassengersInput").value)}/>
+                                        Number of passengers
                                     </div>
-                                    <NewFlightsTable flights={flights}/>
                                     {returnChecked === "on"
                                         ?
                                         <FlightSearchReturn setFlights={setFlights}
@@ -203,11 +204,37 @@ function App() {
                                                             setOriginalReturnFlights={setOriginalReturnFlights}/>
                                         :
                                         <FlightSearch setFlights={setFlights} setOriginalFlights={setOriginalFlights}/>}
-                                    {returnChecked === "on"
-                                        ? <FlightsTableReturn flights={flights} returnFlights={returnFlights}
-                                                              setSelectedFlight={setSelectedFlight}
-                                                              setSelectedReturnFlight={setSelectedReturnFlight}/>
-                                        : <FlightsTable flights={flights} setSelectedFlight={setSelectedFlight}/>}
+
+                                    {returnChecked === "on" //The new table
+                                        ?
+                                        <div>
+                                            <div style={{display: "inline-block", verticalAlign: "top", marginRight: "2%", width: "49%", maxWidth: "49%"}}>
+                                                <h4 className={"container bg-marge p-2 rounded shadow-lg mt-3"}>Flights
+                                                    out</h4>
+                                                <NewFlightsTable flights={flights}
+                                                                 setSelectedFlight={setSelectedFlight}/>
+                                            </div>
+                                            <div style={{display: "inline-block", verticalAlign: "top", width: "49%", maxWidth: "49%"}}>
+                                                <h4 className={"container bg-marge p-2 rounded shadow-lg mt-3"}>Return
+                                                    flights</h4>
+                                                <NewFlightsTableReturn returnFlights={returnFlights}
+                                                                       setSelectedReturnFlights={setSelectedReturnFlight}/>
+                                            </div>
+                                        </div>
+                                        :
+                                        <NewFlightsTable flights={flights}
+                                                         setSelectedFlight={setSelectedFlight}/>}
+
+                                    {returnChecked === "on" //Ye olde table
+                                        ?
+                                        <FlightsTableReturn flights={flights}
+                                                            returnFlights={returnFlights}
+                                                            setSelectedFlight={setSelectedFlight}
+                                                            setSelectedReturnFlight={setSelectedReturnFlight}/>
+
+                                        :
+                                        <FlightsTable flights={flights}
+                                                      setSelectedFlight={setSelectedFlight}/>}
                                 </div>
                             </div>
                         </div>
