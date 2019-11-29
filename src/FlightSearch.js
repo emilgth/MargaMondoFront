@@ -16,23 +16,31 @@ export const FlightSearch = ({setOriginalFlights, setFlights}) => {
     }
     return (
         <div className={"input-group"}>
-            <input className={"form-control"} placeholder={"Departure"}
+            <input className={"form-control input-group-prepend"} placeholder={"Departure"}
                    onChange={event => setSearchData({...searchData, departure: event.target.value})}/>
-            <input className={"form-control input-group-prepend"} placeholder={"Destination"}
+            <input className={"form-control"} placeholder={"Destination"}
                    onChange={event => setSearchData({...searchData, destination: event.target.value})}/>
-            <input className={"form-control  input-group-append"}
+            <input className={"form-control"}
                    onChange={event => setSearchData({...searchData, dateTime: event.target.value})} type={"date"}/>
-            <button className={"button"}
-                    onClick={() => apiFacade.searchFlights(searchData).then(data => {
-                        console.log(data);
-                        let flightsFormattedTime = data.map(flight => {
-                            flight.flightDuration = msToTime(flight.flightDuration);
-                            return flight;
-                        });
-                        setOriginalFlights(flightsFormattedTime);
-                        setFlights(flightsFormattedTime);
-                    })}>search
-            </button>
+            <div className={"input-group-append"}>
+                <button className={"btn btn-success"}
+                        onClick={() => apiFacade.searchFlights(searchData).then(data => {
+                            let flightsFormattedTime = data.map(flight => {
+                                flight.arrivalTime = new Date(Date.parse(flight.departureTime) + flight.flightDuration).toString();
+                                flight.flightDurationMS = flight.flightDuration;
+                                flight.flightDuration = msToTime(flight.flightDuration);
+                                flight.departureTime = new Date(Date.parse(flight.departureTime)).toString();
+                                flight.departureTimeMS = Date.parse(flight.departureTime);
+                                if (flight.flightClass === undefined) {
+                                    flight.flightClass = "Unknown";
+                                }
+                                return flight;
+                            });
+                            setOriginalFlights(flightsFormattedTime);
+                            setFlights(flightsFormattedTime);
+                        })}>search
+                </button>
+            </div>
         </div>
     )
 };
@@ -60,30 +68,46 @@ export const FlightSearchReturn = ({setOriginalFlights, setOriginalReturnFlights
                    onChange={event => setSearchData({...searchData, dateTime: event.target.value})} type={"date"}/>
             <input className={"form-control"}
                    onChange={event => setSearchData({...searchData, returnDate: event.target.value})} type={"date"}/>
-            <button className={"btn btn-primary input-group-append"}
-                    onClick={() => apiFacade.searchFlights(searchData).then(data => {
-                        console.log(data);
-                        let flightsFormattedTime = data.map(flight => {
-                            flight.flightDuration = msToTime(flight.flightDuration);
-                            return flight;
-                        });
-                        setOriginalFlights(flightsFormattedTime);
-                        setFlights(flightsFormattedTime);
-                        const returnData = {
-                            destination: searchData.departure,
-                            departure: searchData.destination,
-                            dateTime: searchData.returnDate
-                        };
-                        apiFacade.searchFlights(returnData).then(data => {
+            <div className={"input-group-append"}>
+                <button className={"btn btn-success input-group-append"}
+                        onClick={() => apiFacade.searchFlights(searchData).then(data => {
+                            console.log(data);
                             let flightsFormattedTime = data.map(flight => {
+                                flight.arrivalTime = new Date(Date.parse(flight.departureTime) + flight.flightDuration).toString();
+                                flight.flightDurationMS = flight.flightDuration;
                                 flight.flightDuration = msToTime(flight.flightDuration);
+                                flight.departureTime = new Date(Date.parse(flight.departureTime)).toString();
+                                flight.departureTimeMS = Date.parse(flight.departureTime);
+                                if (flight.flightClass === undefined) {
+                                    flight.flightClass = "Unknown";
+                                }
                                 return flight;
                             });
-                            setOriginalReturnFlights(flightsFormattedTime);
-                            setReturnFlights(flightsFormattedTime)
-                        })
-                    })}>search
-            </button>
+                            setOriginalFlights(flightsFormattedTime);
+                            setFlights(flightsFormattedTime);
+                            const returnData = {
+                                destination: searchData.departure,
+                                departure: searchData.destination,
+                                dateTime: searchData.returnDate
+                            };
+                            apiFacade.searchFlights(returnData).then(data => {
+                                let flightsFormattedTime = data.map(flight => {
+                                    flight.arrivalTime = new Date(Date.parse(flight.departureTime) + flight.flightDuration).toString();
+                                    flight.flightDurationMS = flight.flightDuration;
+                                    flight.flightDuration = msToTime(flight.flightDuration);
+                                    flight.departureTime = new Date(Date.parse(flight.departureTime)).toString();
+                                    flight.departureTimeMS = Date.parse(flight.departureTime);
+                                    if (flight.flightClass === undefined) {
+                                        flight.flightClass = "Unknown";
+                                    }
+                                    return flight;
+                                });
+                                setOriginalReturnFlights(flightsFormattedTime);
+                                setReturnFlights(flightsFormattedTime)
+                            })
+                        })}>search
+                </button>
+            </div>
         </div>
     );
 };
