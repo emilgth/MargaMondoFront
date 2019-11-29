@@ -117,7 +117,7 @@ export const NewFlightsTable = ({flights}) => {
                             <em>{flight.flightClass}</em>
                         </div>
                         <div className={"col"}>
-                            <button className={"btn-lg btn-success float-right"}>Book</button>
+                            <button className={"btn-lg btn-success float-right"}>Book here</button>
                         </div>
 
                     </div>

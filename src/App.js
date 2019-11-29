@@ -6,11 +6,11 @@ import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom"
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
-import Logo from "./purple.svg"
-import banner from "./output-onlinepngtools.png"
-import facebook from "./Facebook.PNG";
-import twitter from "./Twitter.PNG";
-import instagram from "./Instagram.png";
+import Logo from "./Images/purple.svg"
+import banner from "./Images/output-onlinepngtools.png"
+import facebook from "./Images/Facebook.PNG";
+import twitter from "./Images/Twitter.PNG";
+import instagram from "./Images/Instagram.png";
 
 
 import {
@@ -124,31 +124,100 @@ function App() {
             let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfPassengers;
             return (
                 <div>
-                    <h3>Your ticket</h3>
-                    <p>
-                        {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
-                    </p>
-                    <p>
-                        {selectedReturnFlight.airline} {selectedReturnFlight.departureTime} {selectedReturnFlight.duration} {selectedReturnFlight.departureAirportCode}->{selectedReturnFlight.arrivalAirportCode}
-                    </p>
-                    <p>
-                        ${returnPrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
-                    </p>
+                    {flights.map(flight => {
+                        return <div className={"container bg-marge rounded shadow-lg p-5 mb-3"}>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    <h4><strong>Your ticket</strong></h4>
+                                </div>
+                                <div className={"col"}>
+                                    <p className={"text-right"}> {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}</p>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}><p><strong>Departure:</strong> {flight.departureTime.slice(0, 21)}</p></div>
+                                <div className={"col"}>
+                                    <p className={"text-right"}><strong>Flight duration:</strong> {flight.flightDuration.slice(0, 5)}</p>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}><p><strong>Arrival:</strong></p></div>
+
+                                <div className={"col"}>
+                                    <h4 className={"text-right"}><strong>Price:</strong> ${flight.price},-</h4>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    <em>{flight.flightClass}</em>
+                                </div>
+                                <div className={"col"}>
+                                    ${returnPrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
+                                </div>
+
+                            </div>
+
+
+                        </div>;
+                    })}
                 </div>
+
+                // <div>
+                //     <h3>Your ticket</h3>
+                //     <p>
+                //         {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
+                //     </p>
+                //     <p>
+                //         {selectedReturnFlight.airline} {selectedReturnFlight.departureTime} {selectedReturnFlight.duration} {selectedReturnFlight.departureAirportCode}->{selectedReturnFlight.arrivalAirportCode}
+                //     </p>
+                //     <p>
+                //         ${returnPrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
+                //     </p>
+                // </div>
             )
         }
         if (selectedFlight && !selectedReturnFlight) {
             let singlePrice = selectedFlight.price * numberOfPassengers;
             return (
                 <div>
-                    <h3>Your ticket</h3>
-                    <p>
-                        {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
-                    </p>
-                    <p>
-                        ${singlePrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
-                    </p>
+                    {flights.map(flight => {
+                        return <div className={"container bg-marge rounded shadow-lg p-5 mb-3"}>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    <h4><strong>Your ticket</strong></h4>
+                                </div>
+                                <div className={"col"}>
+                                    <p className={"text-right"}> {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}</p>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}><p><strong>Departure:</strong> {flight.departureTime.slice(0, 21)}</p></div>
+                                <div className={"col"}>
+                                    <p className={"text-right"}><strong>Flight duration:</strong> {flight.flightDuration.slice(0, 5)}</p>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}><p><strong>Arrival:</strong></p></div>
+
+                                <div className={"col"}>
+                                    <h4 className={"text-right"}><strong>Price:</strong> ${flight.price},-</h4>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    <em>{flight.flightClass}</em>
+                                </div>
+                                <div className={"col"}>
+                                    ${singlePrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
+                                </div>
+
+                            </div>
+
+
+                        </div>;
+                    })}
                 </div>
+
             )
         } else return null
     };

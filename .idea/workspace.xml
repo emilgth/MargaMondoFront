@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="">
+    <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="cleaned up code, removed login functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Facebook.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/Facebook.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FlightsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Instagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/Instagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redirection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redirection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Twitter.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/Twitter.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/imageedit_2_3824435318.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/imageedit_2_3824435318.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loading.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/loading.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/logo2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/margamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/margamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/output-onlinepngtools.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/output-onlinepngtools.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/purple.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/Images/purple.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="emilBranch" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,13 +70,26 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Emil\OneDrive - EFIF\Datamatiker\sem3\flow4\Project\MargaMondoFront\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\karlf\WebstormProjects\MargaMondoFront\src\Images" />
       <recent name="C:\Users\Emil\OneDrive - EFIF\Datamatiker\sem3\flow4\Project\MargaMondoFront\src" />
       <recent name="C:\Users\Emil\OneDrive - EFIF\Datamatiker\sem3\flow4\Project\MargaMondoFront\public" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Emil\OneDrive - EFIF\Datamatiker\sem3\flow4\Project\MargaMondoFront\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
@@ -97,18 +123,6 @@
         <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
