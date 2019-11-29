@@ -6,8 +6,8 @@ import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom"
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
-import Logo from "./purple.svg"
-import Margamondo from "./margamond.png"
+import Logo from "./Images/purple.svg"
+import Margamondo from "./Images/margamond.png"
 
 
 export const Footer = () => {

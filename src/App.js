@@ -6,12 +6,12 @@ import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom"
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
 import './App.css';
-import {Redirection} from "./Redirection"
-import Logo from "./purple.svg"
-import banner from "./output-onlinepngtools.png"
-import facebook from "./Facebook.PNG";
-import twitter from "./Twitter.PNG";
-import instagram from "./Instagram.png";
+import {Redirection} from "./Redirection";
+import Logo from "./Images/purple.svg"
+import banner from "./Images/output-onlinepngtools.png"
+import facebook from "./Images/Facebook.PNG";
+import twitter from "./Images/Twitter.PNG";
+import instagram from "./Images/Instagram.png";
 
 
 import {
@@ -150,6 +150,7 @@ function App() {
                         ${singlePrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
                     </p>
                 </div>
+
             )
         } else return null
     };
