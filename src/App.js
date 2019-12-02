@@ -124,33 +124,71 @@ function App() {
         if (selectedFlight && selectedReturnFlight) {
             let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfPassengers;
             return (
-                <div className={"bg-marge p-2 rounded shadow-lg mb-3"}>
-                    <h3>Your ticket</h3>
-                    <p>
-                        {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
-                    </p>
-                    <p>
-                        {selectedReturnFlight.airline} {selectedReturnFlight.departureTime} {selectedReturnFlight.duration} {selectedReturnFlight.departureAirportCode}->{selectedReturnFlight.arrivalAirportCode}
-                    </p>
-                    <p>
-                        ${returnPrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
-                    </p>
+                <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
+                    <div className={"row"}>
+                        <div className={"col"}>
+                            <h4><strong>Your ticket</strong></h4>
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col"}><p><strong>Departure:</strong>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}</p></div>
+                                <p className={"text-right"}><strong>Flight duration:</strong> {selectedFlight.duration}</p>
+                            </div>
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col"}>
+                                <p><strong>Arrival:</strong>{selectedFlight.airline} {selectedFlight.arrivalTime.slice(0, 21)}</p>
+                            </div>
+                            <div className={"col"}>
+                                <em>{selectedFlight.flightClass}</em>
+                            </div>
+                            <div className={"col"}>
+                                <h4 className={"text-right"}><strong>Price:</strong> ${returnPrice},-</h4>
+                            </div>
+                        </div>
+                        <div className={"col"}>
+                            <button className={"btn-lg btn-success float-right"}
+                                    onClick={() => {}}>
+                                Select
+                            </button>
+                        </div>
+
                 </div>
             )
         }
         if (selectedFlight && !selectedReturnFlight) {
             let singlePrice = selectedFlight.price * numberOfPassengers;
             return (
-                <div className={"bg-marge p-2 rounded shadow-lg mb-3"}>
-                    <h3>Your ticket</h3>
-                    <p>
-                        {selectedFlight.airline} {selectedFlight.departureTime} {selectedFlight.duration} {selectedFlight.departureAirportCode}->{selectedFlight.arrivalAirportCode}
-                    </p>
-                    <p>
-                        ${singlePrice},- <NavLink to="/redirecting">Redirect to booking</NavLink>
-                    </p>
+                <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
+                    <div className={"row"}>
+                        <div className={"col"}>
+                            <h4><strong>Your ticket</strong></h4>
+                        </div>
+                    </div>
+                    <div className={"row"}>
+                        <div className={"col"}><p><strong>Departure:</strong>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}</p></div>
+                        <div className={"col"}>
+                            <p className={"text-right"}><strong>Flight duration:</strong> {selectedFlight.duration}</p>
+                        </div>
+                    </div>
+                    <div className={"row"}>
+                        <div className={"col"}>
+                            <p><strong>Arrival:</strong>{selectedFlight.airline} {selectedFlight.arrivalTime.slice(0, 21)}</p>
+                        </div>
+                        <div className={"col"}>
+                            <em>{selectedFlight.flightClass}</em>
+                        </div>
+                        <div className={"col"}>
+                            <h4 className={"text-right"}><strong>Price:</strong> ${singlePrice},-</h4>
+                        </div>
+                    </div>
+                    <div className={"col"}>
+                        <button className={"btn-lg btn-success float-right"}
+                                onClick={() => {}}>
+                            Select
+                        </button>
+                    </div>
                 </div>
-
+            // {selectedFlight.departure    AirportCode}->{selectedFlight.arrivalAirportCode}
             )
         } else return null
     };

@@ -6,13 +6,10 @@ import loading from './Images/loading.gif'
 
 
 export const Redirection = () => {
-
-
     return(
         <div>
-            <img className={"loading-gif"} src={loading} alt="loading..."/>
+            <img className={"loading-gif"}  src={loading} alt="loading..."/>
         </div>
-
     );
 };
 
