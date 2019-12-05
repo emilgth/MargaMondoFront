@@ -3,6 +3,7 @@ import apiFacade from "./apiFacade";
 
 export const FlightSearch = ({setOriginalFlights, setFlights}) => {
     const [searchData, setSearchData] = useState({destination: "", departure: "", dateTime: ""});
+
     function msToTime(duration) {
         let seconds = Math.floor((duration / 1000) % 60),
             minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -14,6 +15,7 @@ export const FlightSearch = ({setOriginalFlights, setFlights}) => {
 //todo change to 1 hours and 343 minutes
         return hours + ":" + minutes + ":" + seconds;
     }
+
     return (
         <div className={"input-group"}>
             <input className={"form-control input-group-prepend"} placeholder={"Departure"}
@@ -24,21 +26,24 @@ export const FlightSearch = ({setOriginalFlights, setFlights}) => {
                    onChange={event => setSearchData({...searchData, dateTime: event.target.value})} type={"date"}/>
             <div className={"input-group-append"}>
                 <button className={"btn btn-success"}
-                        onClick={() => apiFacade.searchFlights(searchData).then(data => {
-                            let flightsFormattedTime = data.map(flight => {
-                                flight.arrivalTime = new Date(Date.parse(flight.departureTime) + flight.flightDuration).toString();
-                                flight.flightDurationMS = flight.flightDuration;
-                                flight.flightDuration = msToTime(flight.flightDuration);
-                                flight.departureTime = new Date(Date.parse(flight.departureTime)).toString();
-                                flight.departureTimeMS = Date.parse(flight.departureTime);
-                                if (flight.flightClass === undefined) {
-                                    flight.flightClass = "Unknown";
-                                }
-                                return flight;
+                        onClick={() => {
+                            apiFacade.logSearch(searchData).then((status) => console.log(status));
+                            apiFacade.searchFlights(searchData).then(data => {
+                                let flightsFormattedTime = data.map(flight => {
+                                    flight.arrivalTime = new Date(Date.parse(flight.departureTime) + flight.flightDuration).toString();
+                                    flight.flightDurationMS = flight.flightDuration;
+                                    flight.flightDuration = msToTime(flight.flightDuration);
+                                    flight.departureTime = new Date(Date.parse(flight.departureTime)).toString();
+                                    flight.departureTimeMS = Date.parse(flight.departureTime);
+                                    if (flight.flightClass === undefined) {
+                                        flight.flightClass = "Unknown";
+                                    }
+                                    return flight;
+                                });
+                                setOriginalFlights(flightsFormattedTime);
+                                setFlights(flightsFormattedTime);
                             });
-                            setOriginalFlights(flightsFormattedTime);
-                            setFlights(flightsFormattedTime);
-                        })}>search
+                        }}>search
                 </button>
             </div>
         </div>
@@ -47,6 +52,7 @@ export const FlightSearch = ({setOriginalFlights, setFlights}) => {
 
 export const FlightSearchReturn = ({setOriginalFlights, setOriginalReturnFlights, setFlights, setReturnFlights}) => {
     const [searchData, setSearchData] = useState({destination: "", departure: "", dateTime: "", returnDate: ""});
+
     function msToTime(duration) {
         let seconds = Math.floor((duration / 1000) % 60),
             minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -58,6 +64,7 @@ export const FlightSearchReturn = ({setOriginalFlights, setOriginalReturnFlights
 //todo change to 1 hours and 343 minutes
         return hours + ":" + minutes + ":" + seconds;
     }
+
     return (
         <div className={"input-group"}>
             <input className={"form-control"} placeholder={"Departure"}
@@ -70,8 +77,11 @@ export const FlightSearchReturn = ({setOriginalFlights, setOriginalReturnFlights
                    onChange={event => setSearchData({...searchData, returnDate: event.target.value})} type={"date"}/>
             <div className={"input-group-append"}>
                 <button className={"btn btn-success input-group-append"}
-                        onClick={() => apiFacade.searchFlights(searchData).then(data => {
+                        onClick={() => {
+                            apiFacade.logSearch(searchData).then((status) => console.log(status));
+                            apiFacade.searchFlights(searchData).then(data => {
                             console.log(data);
+                            console.log(searchData);
                             let flightsFormattedTime = data.map(flight => {
                                 flight.arrivalTime = new Date(Date.parse(flight.departureTime) + flight.flightDuration).toString();
                                 flight.flightDurationMS = flight.flightDuration;
@@ -105,7 +115,7 @@ export const FlightSearchReturn = ({setOriginalFlights, setOriginalReturnFlights
                                 setOriginalReturnFlights(flightsFormattedTime);
                                 setReturnFlights(flightsFormattedTime)
                             })
-                        })}>search
+                        })}}>search
                 </button>
             </div>
         </div>

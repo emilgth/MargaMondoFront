@@ -20,10 +20,30 @@ function apiFacade() {
 		return fetch(backend + "/api/flights/global").then(handleHttpErrors);
 	};
 
+	const fetchAllLogs = () => {
+		return fetch(backend + "/api/flights/log").then(handleHttpErrors);
+	};
+
+	const fetchAllSearchLogs = () => {
+		return fetch(backend + "/api/flights/searchlog").then(handleHttpErrors);
+	};
+
 	const searchFlights = (searchData) => {
 		const options = makeOptions("POST", false, searchData);
 		console.log(options);
 		return fetch(backend + "/api/flights/search", options).then(handleHttpErrors);
+	};
+
+	const logSearch = (data) => {
+		const options = makeOptions("POST", false, data);
+		console.log(data);
+		return fetch(backend + "/api/flights/search/log", options).then(handleHttpErrors);
+	};
+
+	const logFlights = (flights) => {
+		const options = makeOptions("POST", false, flights);
+		console.log(flights);
+		return fetch(backend + "/api/flights/booking/log", options).then(handleHttpErrors);
 	};
 
 	const fetchApiData = () => {
@@ -49,8 +69,12 @@ function apiFacade() {
 		setToken,
 		getToken,
 		fetchAllFlights,
+		fetchAllLogs,
 		fetchApiData,
-		searchFlights
+		fetchAllSearchLogs,
+		searchFlights,
+		logSearch,
+		logFlights
 	}
 }
 

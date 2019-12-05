@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import {FlightsTable, FlightsTableReturn, NewFlightsTable, NewFlightsTableReturn, Pagination} from "./FlightsTable";
-import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
+import {NewFlightsTable, NewFlightsTableReturn} from "./FlightsTable";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
+import {LogButton, LogTable, SearchLogTable} from "./FlightLogs";
 import facade from "./apiFacade";
 import './App.css';
 import {Redirection} from "./Redirection";
@@ -12,7 +13,6 @@ import banner from "./Images/output-onlinepngtools.png"
 import facebook from "./Images/Facebook.PNG";
 import twitter from "./Images/Twitter.PNG";
 import instagram from "./Images/Instagram.png";
-
 
 import {
     handleAirlinesCheckbox,
@@ -49,7 +49,6 @@ const Header = () => {
     )
 };
 
-
 function App() {
     const [selectedFlight, setSelectedFlight] = useState(null);
     const [selectedReturnFlight, setSelectedReturnFlight] = useState(null);
@@ -62,7 +61,10 @@ function App() {
     const [airlinesUnchecked, setAirlinesUnchecked] = useState([]);
     const [flightClasses, setFlightClasses] = useState([]);
     const [flightClassesUnchecked, setFlightClassesUnchecked] = useState([]);
-    const [numberOfPassengers, setNumberOfPassengers] = useState(1);
+    const [numberOfAdults, setNumberOfAdults] = useState(1);
+    const [numberOfChildren, setNumberOfChildren] = useState(0);
+    const [log, setLog] = useState(null);
+    const [searchLog, setSearchLog] = useState(null);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(9);
 
@@ -80,6 +82,7 @@ function App() {
                 flight.flightDuration = msToTime(flight.flightDuration);
                 flight.departureTime = new Date(Date.parse(flight.departureTime)).toString();
                 flight.departureTimeMS = Date.parse(flight.departureTime);
+                flight.arrivalTimeMS = Date.parse(flight.departureTime) + flight.flightDurationMS;
                 if (flight.flightClass === undefined) {
                     flight.flightClass = "Unknown";
                 }
@@ -126,7 +129,7 @@ function App() {
     const handleClassCheckbox = handleFlightClassCheckbox(flightClasses, setFlightClasses, setFlightClassesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights, airlinesUnchecked);
     const SelectedFlightsRenderer = () => {
         if (selectedFlight && selectedReturnFlight) {
-            let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfPassengers;
+            let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfAdults;
             return (
                 <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
@@ -156,16 +159,24 @@ function App() {
                     <div className={"col"}>
                         <button className={"btn-lg btn-success float-right"}
                                 onClick={() => {
+                                    facade.logFlights([{
+                                        ...selectedFlight,
+                                        numberOfAdults,
+                                        numberOfChildren
+                                    }, {
+                                        ...selectedReturnFlight,
+                                        numberOfAdults,
+                                        numberOfChildren
+                                    }]).then(data => console.log(data))
                                 }}>
-                            Select
+                            Book
                         </button>
                     </div>
-
                 </div>
             )
         }
         if (selectedFlight && !selectedReturnFlight) {
-            let singlePrice = selectedFlight.price * numberOfPassengers;
+            let singlePrice = selectedFlight.price * numberOfAdults;
             return (
                 <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
@@ -197,8 +208,9 @@ function App() {
                     <div className={"col"}>
                         <button className={"btn-lg btn-success float-right"}
                                 onClick={() => {
+                                    facade.logFlights([{...selectedFlight, numberOfAdults, numberOfChildren}])
                                 }}>
-                            Select
+                            Book
                         </button>
                     </div>
                 </div>
@@ -266,6 +278,9 @@ function App() {
                                     <div className={"container-fluid mb-3"}><CopenhagenBanner/></div>
                                     <div className={"container-fluid"}>
                                         <SelectedFlightsRenderer/>
+                                        <LogButton setLog={setLog} setSearchLog={setSearchLog}/>
+                                        <LogTable log={log} searchLog={searchLog}/>
+                                        <SearchLogTable searchLog={searchLog}/>
                                         <div className={"bg-marge p-2 rounded shadow-lg mb-3"}>
                                             <div>
                                                 <div className={"form-inline mb-1"}>
@@ -281,7 +296,7 @@ function App() {
                                                            id={"numberOfPassengersInput"}
                                                            type={"number"}
                                                            placeholder={1}
-                                                           onChange={() => setNumberOfPassengers(document.getElementById("numberOfPassengersInput").value)}/>
+                                                           onChange={() => setNumberOfAdults(document.getElementById("numberOfPassengersInput").value)}/>
                                                     Number of passengers
                                                 </div>
                                             </div>
@@ -290,10 +305,12 @@ function App() {
                                                 <FlightSearchReturn setFlights={setFlights}
                                                                     setOriginalFlights={setOriginalFlights}
                                                                     setReturnFlights={setReturnFlights}
-                                                                    setOriginalReturnFlights={setOriginalReturnFlights}/>
+                                                                    setOriginalReturnFlights={setOriginalReturnFlights}
+                                                                    setLog={setLog}/>
                                                 :
                                                 <FlightSearch setFlights={setFlights}
-                                                              setOriginalFlights={setOriginalFlights}/>}</div>
+                                                              setOriginalFlights={setOriginalFlights}/>}
+                                        </div>
                                         <div className={"input-group form-inline mb-3 pl-0"}>
                                             <div className={"input-group-prepend"}>
                                                 <button onClick={sortByPrice} className={"btn btn-success btn-sm"}>Sort
