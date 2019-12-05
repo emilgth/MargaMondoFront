@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import {FlightsTable, FlightsTableReturn, NewFlightsTable, NewFlightsTableReturn} from "./FlightsTable";
+import {FlightsTable, FlightsTableReturn, NewFlightsTable, NewFlightsTableReturn, Pagination} from "./FlightsTable";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import facade from "./apiFacade";
@@ -20,6 +20,8 @@ import {
     renderAirlinesCheckboxes,
     RenderClassesCheckboxes
 } from "./checkboxFacade";
+import {PriceSlider, TimeSlider} from "./PriceSlider";
+import {CopenhagenBanner, LondonBanner, ParisBanner} from "./banners";
 
 //Welcome to the jungle
 const Welcome = () => {
@@ -61,6 +63,8 @@ function App() {
     const [flightClasses, setFlightClasses] = useState([]);
     const [flightClassesUnchecked, setFlightClassesUnchecked] = useState([]);
     const [numberOfPassengers, setNumberOfPassengers] = useState(1);
+    const [startIndex, setStartIndex] = useState(0);
+    const [endIndex, setEndIndex] = useState(9);
 
     useEffect(() => {
         facade.fetchAllFlights().then(data => {
@@ -68,6 +72,8 @@ function App() {
                 flight.id += 1000
             }
             let combinedArrays = [...data[0], ...data[1]];
+            let allAirlines = new Set();
+            let allFlightClasses = new Set();
             let flightsFormattedTime = combinedArrays.map(flight => {
                 flight.arrivalTime = new Date(Date.parse(flight.departureTime) + flight.flightDuration).toString();
                 flight.flightDurationMS = flight.flightDuration;
@@ -77,18 +83,16 @@ function App() {
                 if (flight.flightClass === undefined) {
                     flight.flightClass = "Unknown";
                 }
+                allAirlines.add(flight.airline);
+                allFlightClasses.add(flight.flightClass);
                 return flight;
+
+            });
+            flightsFormattedTime.sort(function (a, b) {
+                return a.price - b.price;
             });
             setOriginalFlights(flightsFormattedTime);
             setFlights(flightsFormattedTime);
-
-            //pull out the distinct airlines from the list of flights
-            let allAirlines = new Set();
-            let allFlightClasses = new Set();
-            combinedArrays.forEach(data => {
-                allAirlines.add(data.airline);
-                allFlightClasses.add(data.flightClass);
-            });
 
             //adds a 'checked' property to the list of airlines
             allAirlines = [...allAirlines];
@@ -130,27 +134,32 @@ function App() {
                             <h4><strong>Your ticket</strong></h4>
                         </div>
                         <div className={"row"}>
-                            <div className={"col"}><p><strong>Departure:</strong>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}</p></div>
-                                <p className={"text-right"}><strong>Flight duration:</strong> {selectedFlight.duration}</p>
-                            </div>
+                            <div className={"col"}><p>
+                                <strong>Departure:</strong>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}
+                            </p></div>
+                            <p className={"text-right"}><strong>Flight duration:</strong> {selectedFlight.duration}</p>
                         </div>
-                        <div className={"row"}>
-                            <div className={"col"}>
-                                <p><strong>Arrival:</strong>{selectedFlight.airline} {selectedFlight.arrivalTime.slice(0, 21)}</p>
-                            </div>
-                            <div className={"col"}>
-                                <em>{selectedFlight.flightClass}</em>
-                            </div>
-                            <div className={"col"}>
-                                <h4 className={"text-right"}><strong>Price:</strong> ${returnPrice},-</h4>
-                            </div>
+                    </div>
+                    <div className={"row"}>
+                        <div className={"col"}>
+                            <p>
+                                <strong>Arrival:</strong>{selectedFlight.airline} {selectedFlight.arrivalTime.slice(0, 21)}
+                            </p>
                         </div>
                         <div className={"col"}>
-                            <button className={"btn-lg btn-success float-right"}
-                                    onClick={() => {}}>
-                                Select
-                            </button>
+                            <em>{selectedFlight.flightClass}</em>
                         </div>
+                        <div className={"col"}>
+                            <h4 className={"text-right"}><strong>Price:</strong> ${returnPrice},-</h4>
+                        </div>
+                    </div>
+                    <div className={"col"}>
+                        <button className={"btn-lg btn-success float-right"}
+                                onClick={() => {
+                                }}>
+                            Select
+                        </button>
+                    </div>
 
                 </div>
             )
@@ -165,14 +174,18 @@ function App() {
                         </div>
                     </div>
                     <div className={"row"}>
-                        <div className={"col"}><p><strong>Departure:</strong>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}</p></div>
+                        <div className={"col"}><p>
+                            <strong>Departure:</strong>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}
+                        </p></div>
                         <div className={"col"}>
                             <p className={"text-right"}><strong>Flight duration:</strong> {selectedFlight.duration}</p>
                         </div>
                     </div>
                     <div className={"row"}>
                         <div className={"col"}>
-                            <p><strong>Arrival:</strong>{selectedFlight.airline} {selectedFlight.arrivalTime.slice(0, 21)}</p>
+                            <p>
+                                <strong>Arrival:</strong>{selectedFlight.airline} {selectedFlight.arrivalTime.slice(0, 21)}
+                            </p>
                         </div>
                         <div className={"col"}>
                             <em>{selectedFlight.flightClass}</em>
@@ -183,12 +196,13 @@ function App() {
                     </div>
                     <div className={"col"}>
                         <button className={"btn-lg btn-success float-right"}
-                                onClick={() => {}}>
+                                onClick={() => {
+                                }}>
                             Select
                         </button>
                     </div>
                 </div>
-            // {selectedFlight.departure    AirportCode}->{selectedFlight.arrivalAirportCode}
+                // {selectedFlight.departure    AirportCode}->{selectedFlight.arrivalAirportCode}
             )
         } else return null
     };
@@ -227,11 +241,12 @@ function App() {
                             <div className={"row"}>
                                 <div className={"col-2"}>
                                     <div className={"bg-marge shadow-lg container rounded p-2"}>
+                                        <h5><strong>Airlines</strong></h5>
                                         {renderAirlinesCheckboxes(airlines, handleCheckbox, setFlights, originalFlights, setReturnFlights, originalReturnFlights, setAirlines)}
 
                                     </div>
                                     <div className={"bg-marge shadow-lg container rounded mt-3 p-2"}>
-
+                                        <h5><strong>Classes</strong></h5>
                                         <RenderClassesCheckboxes flightClasses={flightClasses}
                                                                  handleClassCheckbox={handleClassCheckbox}
                                                                  setFlights={setFlights}
@@ -240,21 +255,28 @@ function App() {
                                                                  originalReturnFlights={originalReturnFlights}
                                                                  setFlightClasses={setFlightClasses}/>
                                     </div>
+                                    <div className={"bg-marge shadow-lg container rounded mt-3 p-2"}>
+                                        <h5><strong>Price and time</strong></h5>
+                                        <PriceSlider setFlights={setFlights} originalFlights={originalFlights}/>
+                                        <TimeSlider originalFlights={originalFlights} setFlights={setFlights}/>
+                                    </div>
+
                                 </div>
-                                <div className={"col-10"}>
+                                <div className={"col-8"}>
+                                    <div className={"container-fluid mb-3"}><CopenhagenBanner/></div>
                                     <div className={"container-fluid"}>
                                         <SelectedFlightsRenderer/>
                                         <div className={"bg-marge p-2 rounded shadow-lg mb-3"}>
                                             <div>
                                                 <div className={"form-inline mb-1"}>
-                                                    <input className={"form-check"}
+                                                    <input className={"form-check-input"}
                                                            type={"checkbox"}
                                                            onChange={() => returnChecked === "off"
                                                                ?
                                                                setReturnChecked("on")
                                                                :
                                                                setReturnChecked("off")}/>
-                                                    Return ticket
+                                                    <label className={"form-check-label"}>Return ticket</label>
                                                     <input className={"form-control-sm rounded ml-5 mr-1"}
                                                            id={"numberOfPassengersInput"}
                                                            type={"number"}
@@ -316,8 +338,15 @@ function App() {
                                                 </div>
                                             </div>
                                             :
-                                            <NewFlightsTable flights={flights}
-                                                             setSelectedFlight={setSelectedFlight}/>}</div>
+                                            <NewFlightsTable flights={flights.splice(startIndex, endIndex)}
+                                                             setSelectedFlight={setSelectedFlight}/>
+                                        }
+                                        <Pagination startIndex={startIndex} setStartIndex={setStartIndex} endIndex={endIndex} setEndIndex={setEndIndex}/>
+                                    </div>
+                                </div>
+                                <div className={"col-2"}>
+                                    <LondonBanner/>
+                                    <ParisBanner/>
                                 </div>
                             </div>
                         </div>

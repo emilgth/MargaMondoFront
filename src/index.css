@@ -65,3 +65,55 @@ width:25%; height:25%; max-height: 25%; max-width: 25%;
 .button:hover {
   background-color: orange;
 }
+
+.img-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px #ff7bac;
+  transition-duration: 500ms;
+}
+
+.img-container:hover {
+  text-shadow:  0 50px #ea3c42,  0 -50px #3c51a7;
+  cursor: pointer;
+}
+
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.nyhavn-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px #ff7bac;
+  transition-duration: 500ms;
+  background-image: url("Images/nyhavn.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 25vh;
+}
+
+.nyhavn-container:hover {
+  text-shadow:  0 50px #bb1221,  0 -50px #bb1221;
+  cursor: pointer;
+}
+
+.london-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px #ff7bac;
+  transition-duration: 500ms;
+}
+
+.london-container:hover {
+  text-shadow:  0 50px #d0142c,  0 -50px #00237d;
+  cursor: pointer;
+}
