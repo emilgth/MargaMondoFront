@@ -108,7 +108,8 @@ export const NewFlightsTableReturn = ({returnFlights, setSelectedReturnFlights})
                         </div>
                         <div className={"col"}>
                             <button className={"btn-lg btn-success float-right"}
-                                    onClick={()=>setSelectedReturnFlights(flight)}>
+                                    onClick={()=>{
+                                        setSelectedReturnFlights(flight)}}>
                                 Select
                             </button>
                         </div>

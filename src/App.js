@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import {NewFlightsTable, NewFlightsTableReturn} from "./FlightsTable";
+import {NewFlightsTable, NewFlightsTableReturn, Pagination} from "./FlightsTable";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import {LogButton, LogTable, SearchLogTable} from "./FlightLogs";
@@ -129,7 +129,7 @@ function App() {
     const handleClassCheckbox = handleFlightClassCheckbox(flightClasses, setFlightClasses, setFlightClassesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights, airlinesUnchecked);
     const SelectedFlightsRenderer = () => {
         if (selectedFlight && selectedReturnFlight) {
-            let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfAdults;
+            let returnPrice = ((selectedFlight.price + selectedReturnFlight.price) * numberOfAdults) + ((selectedFlight.price + selectedReturnFlight.price) / 2 * numberOfChildren);
             return (
                 <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
@@ -176,7 +176,7 @@ function App() {
             )
         }
         if (selectedFlight && !selectedReturnFlight) {
-            let singlePrice = selectedFlight.price * numberOfAdults;
+            let singlePrice = (selectedFlight.price * numberOfAdults) + (selectedFlight.price / 2 * numberOfChildren);
             return (
                 <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
@@ -293,11 +293,17 @@ function App() {
                                                                setReturnChecked("off")}/>
                                                     <label className={"form-check-label"}>Return ticket</label>
                                                     <input className={"form-control-sm rounded ml-5 mr-1"}
-                                                           id={"numberOfPassengersInput"}
+                                                           id={"numberOfAdultsInput"}
                                                            type={"number"}
-                                                           placeholder={1}
-                                                           onChange={() => setNumberOfAdults(document.getElementById("numberOfPassengersInput").value)}/>
-                                                    Number of passengers
+                                                           placeholder={numberOfAdults}
+                                                           onChange={() => setNumberOfAdults(document.getElementById("numberOfAdultsInput").value)}/>
+                                                    Adults
+                                                    <input className={"form-control-sm rounded ml-5 mr-1"}
+                                                           id={"numberOfChildrenInput"}
+                                                           type={"number"}
+                                                           placeholder={numberOfChildren}
+                                                           onChange={() => setNumberOfChildren(document.getElementById("numberOfChildrenInput").value)}/>
+                                                    Children
                                                 </div>
                                             </div>
                                             {returnChecked === "on"
@@ -358,7 +364,8 @@ function App() {
                                             <NewFlightsTable flights={flights.splice(startIndex, endIndex)}
                                                              setSelectedFlight={setSelectedFlight}/>
                                         }
-                                        <Pagination startIndex={startIndex} setStartIndex={setStartIndex} endIndex={endIndex} setEndIndex={setEndIndex}/>
+                                        <Pagination startIndex={startIndex} setStartIndex={setStartIndex}
+                                                    endIndex={endIndex} setEndIndex={setEndIndex}/>
                                     </div>
                                 </div>
                                 <div className={"col-2"}>
