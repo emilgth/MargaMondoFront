@@ -18,7 +18,7 @@ export const Pagination = ({startIndex, setStartIndex}) => {
     };
     return (
         <div>
-            <button className={"btn btn-success"} onClick={handleBack}>Back</button>
+            <button className={"btn btn-success mr-3"} onClick={handleBack}>Back</button>
             <button className={"btn btn-success"} onClick={handleNext}>Next</button>
         </div>
     )

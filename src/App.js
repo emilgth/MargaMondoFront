@@ -120,7 +120,6 @@ function App() {
         hours = (hours < 10) ? "0" + hours : hours;
         minutes = (minutes < 10) ? "0" + minutes : minutes;
         seconds = (seconds < 10) ? "0" + seconds : seconds;
-        //todo change to 1 hours and 343 minutes
         return hours + ":" + minutes + ":" + seconds;
     }
 
@@ -130,44 +129,67 @@ function App() {
         if (selectedFlight && selectedReturnFlight) {
             let returnPrice = ((selectedFlight.price + selectedReturnFlight.price) * numberOfAdults) + ((selectedFlight.price + selectedReturnFlight.price) / 2 * numberOfChildren);
             return (
-                <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
+                <div className={"bg-marge rounded shadow-lg mb-3 container-fluid"}>
                     <div className={"row"}>
-                        <h4><strong>Your ticket</strong></h4>
-                        <div className={"row"}>
-                            <div className={"col"}>
-                                <p>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}
-                                </p></div>
-                            <p className={"text-right"}><strong>Flight duration:</strong> {selectedFlight.duration}</p>
+                        <div className={"col-8 p-4"}>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    <strong>{selectedFlight.departureTime.slice(16, 21)} - {selectedFlight.arrivalTime.slice(16, 21)}</strong>
+                                </div>
+                                <div className={"col"}>
+                                    <strong className={"float-right"}>{selectedFlight.flightDuration}</strong>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    {selectedFlight.airline}
+                                </div>
+                                <div className={"col"}>
+                                    <p className={"float-right"}>{selectedFlight.departureAirportCode} - {selectedFlight.arrivalAirportCode}</p>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    <strong>{selectedReturnFlight.departureTime.slice(16, 21)} - {selectedReturnFlight.arrivalTime.slice(16, 21)}</strong>
+                                </div>
+                                <div className={"col"}>
+                                    <strong className={"float-right"}>{selectedReturnFlight.flightDuration}</strong>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    {selectedReturnFlight.airline}
+                                </div>
+                                <div className={"col"}>
+                                    <p className={"float-right"}>{selectedReturnFlight.departureAirportCode} - {selectedReturnFlight.arrivalAirportCode}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className={"row"}>
-                        <div className={"col"}>
-                            <p>
-                                <strong>Arrival:</strong>{selectedFlight.airline} {selectedFlight.arrivalTime.slice(0, 21)}
-                            </p>
+                        <div className={"col-4 pr-4 pt-4 pb-2 rounded-right"} style={{backgroundColor: "lightgrey"}}>
+                            <div className={"row pl-2"}>
+                                <div className={"col"}>
+                                    <div className={"row"}><p>Adults: {numberOfAdults}</p></div>
+                                    <div className={"row"}><p>{numberOfChildren > 0 ? `Children: ${numberOfChildren}` : ""}</p></div>
+                                    <div className={"row"}><h3><strong>${returnPrice}</strong></h3></div>
+                                    <div className={"row"}>
+                                        <button className={"btn btn-lg btn-block btn-success"}
+                                                onClick={() => {
+                                                    facade.logFlights([{
+                                                        ...selectedFlight,
+                                                        numberOfAdults,
+                                                        numberOfChildren
+                                                    }, {
+                                                        ...selectedReturnFlight,
+                                                        numberOfAdults,
+                                                        numberOfChildren
+                                                    }]).then(data => console.log(data))
+                                                }}>
+                                            Book
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className={"col"}>
-                            <em>{selectedFlight.flightClass}</em>
-                        </div>
-                        <div className={"col"}>
-                            <h4 className={"text-right"}><strong>Price:</strong> ${returnPrice},-</h4>
-                        </div>
-                    </div>
-                    <div className={"col"}>
-                        <button className={"btn-lg btn-success float-right"}
-                                onClick={() => {
-                                    facade.logFlights([{
-                                        ...selectedFlight,
-                                        numberOfAdults,
-                                        numberOfChildren
-                                    }, {
-                                        ...selectedReturnFlight,
-                                        numberOfAdults,
-                                        numberOfChildren
-                                    }]).then(data => console.log(data))
-                                }}>
-                            Book
-                        </button>
                     </div>
                 </div>
             )
@@ -195,11 +217,11 @@ function App() {
                                 </div>
                             </div>
                         </div>
-                        <div className={"col-4 pr-4 pt-4 pb-2 rounded-right"} style={{backgroundColor: "grey"}}>
+                        <div className={"col-4 pr-4 pt-4 pb-2 rounded-right"} style={{backgroundColor: "lightgrey"}}>
                             <div className={"row pl-2"}>
                                 <div className={"col"}>
                                     <div className={"row"}><p>Adults: {numberOfAdults}</p></div>
-                                    <div className={"row"}><p>{numberOfChildren > 0 ? numberOfChildren : ""}</p></div>
+                                    <div className={"row"}><p>{numberOfChildren > 0 ? `Children: ${numberOfChildren}` : ""}</p></div>
                                     <div className={"row"}><h3><strong>${singlePrice}</strong></h3></div>
                                     <div className={"row"}>
                                         <button className={"btn btn-lg btn-block btn-success"}
@@ -208,7 +230,7 @@ function App() {
                                                         ...selectedFlight,
                                                         numberOfAdults,
                                                         numberOfChildren
-                                                    }])
+                                                    }]).then(data => console.log(data))
                                                 }}>
                                             Book
                                         </button>
@@ -296,18 +318,18 @@ function App() {
                                                                :
                                                                setReturnChecked("off")}/>
                                                     <label className={"form-check-label"}>Return ticket</label>
-                                                    <input className={"form-control-sm rounded ml-5 mr-1"}
+                                                    <input style={{width: "10%"}} className={"form-control input-sm rounded ml-2 mr-1"}
                                                            id={"numberOfAdultsInput"}
                                                            type={"number"}
                                                            placeholder={numberOfAdults}
                                                            onChange={() => setNumberOfAdults(document.getElementById("numberOfAdultsInput").value)}/>
-                                                    Adults
-                                                    <input className={"form-control-sm rounded ml-5 mr-1"}
+                                                    <label className={"form-control-label"}>Adults</label>
+                                                    <input style={{width: "10%"}} className={"form-control input-sm rounded ml-2 mr-1"}
                                                            id={"numberOfChildrenInput"}
                                                            type={"number"}
                                                            placeholder={numberOfChildren}
                                                            onChange={() => setNumberOfChildren(document.getElementById("numberOfChildrenInput").value)}/>
-                                                    Children
+                                                    <label className={"form-control-label"}>Children</label>
                                                 </div>
                                             </div>
                                             {returnChecked === "on"
