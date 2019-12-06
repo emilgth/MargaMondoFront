@@ -128,7 +128,7 @@ function App() {
     const handleClassCheckbox = handleFlightClassCheckbox(flightClasses, setFlightClasses, setFlightClassesUnchecked, originalFlights, setFlights, originalReturnFlights, setReturnFlights, airlinesUnchecked);
     const SelectedFlightsRenderer = () => {
         if (selectedFlight && selectedReturnFlight) {
-            let returnPrice = (selectedFlight.price + selectedReturnFlight.price) * numberOfAdults;
+            let returnPrice = ((selectedFlight.price + selectedReturnFlight.price) * numberOfAdults) + ((selectedFlight.price + selectedReturnFlight.price) / 2 * numberOfChildren);
             return (
                 <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
@@ -173,7 +173,7 @@ function App() {
             )
         }
         if (selectedFlight && !selectedReturnFlight) {
-            let singlePrice = selectedFlight.price * numberOfAdults;
+            let singlePrice = (selectedFlight.price * numberOfAdults) + (selectedFlight.price / 2 * numberOfChildren);
             return (
                 <div className={"bg-marge rounded shadow-lg mb-3 container-fluid"}>
                     <div className={"row"}>
@@ -297,11 +297,17 @@ function App() {
                                                                setReturnChecked("off")}/>
                                                     <label className={"form-check-label"}>Return ticket</label>
                                                     <input className={"form-control-sm rounded ml-5 mr-1"}
-                                                           id={"numberOfPassengersInput"}
+                                                           id={"numberOfAdultsInput"}
                                                            type={"number"}
-                                                           placeholder={1}
-                                                           onChange={() => setNumberOfAdults(document.getElementById("numberOfPassengersInput").value)}/>
-                                                    Number of passengers
+                                                           placeholder={numberOfAdults}
+                                                           onChange={() => setNumberOfAdults(document.getElementById("numberOfAdultsInput").value)}/>
+                                                    Adults
+                                                    <input className={"form-control-sm rounded ml-5 mr-1"}
+                                                           id={"numberOfChildrenInput"}
+                                                           type={"number"}
+                                                           placeholder={numberOfChildren}
+                                                           onChange={() => setNumberOfChildren(document.getElementById("numberOfChildrenInput").value)}/>
+                                                    Children
                                                 </div>
                                             </div>
                                             {returnChecked === "on"
