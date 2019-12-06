@@ -8,14 +8,12 @@ import facade from "./apiFacade";
 import {Redirection} from "./Redirection";
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 
-export const Pagination = ({startIndex, setStartIndex, endIndex, setEndIndex}) => {
+export const Pagination = ({startIndex, setStartIndex}) => {
 
     const handleNext = () => {
-        setEndIndex(endIndex + 10);
         setStartIndex(startIndex + 10)
     };
     const handleBack = () => {
-        setEndIndex(endIndex - 10);
         setStartIndex(startIndex - 10)
     };
     return (
@@ -25,11 +23,12 @@ export const Pagination = ({startIndex, setStartIndex, endIndex, setEndIndex}) =
         </div>
     )
 };
-export const NewFlightsTable = ({flights, setSelectedFlight, startIndex, endIndex}) => {
+export const NewFlightsTable = ({flights, setSelectedFlight, startIndex}) => {
+
 
     return (
         <div>
-            {flights.map(flight => {
+            {flights.slice(startIndex, startIndex + 10).map(flight => {
                 return <div key={flight.id} className={"bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
                         <div className={"col"}>
@@ -49,7 +48,7 @@ export const NewFlightsTable = ({flights, setSelectedFlight, startIndex, endInde
                     </div>
                     <div className={"row"}>
                         <div className={"col"}>
-                            <p><strong>Arrival:</strong> {/*flight.arrivalTime.slice(0, 21)*/}</p>
+                            <p><strong>Arrival:</strong> {flight.arrivalTime.slice(0, 21)}</p>
                         </div>
                         <div className={"col"}>
                             <h4 className={"text-right"}><strong>Price:</strong> ${flight.price},-</h4>
@@ -75,10 +74,10 @@ export const NewFlightsTable = ({flights, setSelectedFlight, startIndex, endInde
     );
 };
 
-export const NewFlightsTableReturn = ({returnFlights, setSelectedReturnFlights}) => {
+export const NewFlightsTableReturn = ({returnFlights, setSelectedReturnFlights, startIndex}) => {
     return (
         <div>
-            {returnFlights.map(flight => {
+            {returnFlights.slice(startIndex, startIndex + 10).map(flight => {
                 return <div key={flight.id} className={"container bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
                         <div className={"col"}>
@@ -89,14 +88,16 @@ export const NewFlightsTableReturn = ({returnFlights, setSelectedReturnFlights})
                         </div>
                     </div>
                     <div className={"row"}>
-                        <div className={"col"}><p><strong>Departure:</strong> {flight.departureTime.slice(0, 21)}</p></div>
+                        <div className={"col"}><p><strong>Departure:</strong> {flight.departureTime.slice(0, 21)}</p>
+                        </div>
                         <div className={"col"}>
-                            <p className={"text-right"}><strong>Flight duration:</strong> {flight.flightDuration.slice(0, 5)}</p>
+                            <p className={"text-right"}><strong>Flight
+                                duration:</strong> {flight.flightDuration.slice(0, 5)}</p>
                         </div>
                     </div>
                     <div className={"row"}>
                         <div className={"col"}>
-                            <p><strong>Arrival:</strong> {/*flight.arrivalTime.slice(0, 21)*/}</p>
+                            <p><strong>Arrival:</strong> {flight.arrivalTime.slice(0, 21)}</p>
                         </div>
                         <div className={"col"}>
                             <h4 className={"text-right"}><strong>Price:</strong> ${flight.price},-</h4>
@@ -108,7 +109,7 @@ export const NewFlightsTableReturn = ({returnFlights, setSelectedReturnFlights})
                         </div>
                         <div className={"col"}>
                             <button className={"btn-lg btn-success float-right"}
-                                    onClick={()=>setSelectedReturnFlights(flight)}>
+                                    onClick={() => setSelectedReturnFlights(flight)}>
                                 Select
                             </button>
                         </div>

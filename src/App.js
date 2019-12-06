@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import {NewFlightsTable, NewFlightsTableReturn} from "./FlightsTable";
+import {NewFlightsTable, NewFlightsTableReturn, Pagination} from "./FlightsTable";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {FlightSearch, FlightSearchReturn} from "./FlightSearch";
 import {LogButton, LogTable, SearchLogTable} from "./FlightLogs";
@@ -66,7 +66,6 @@ function App() {
     const [log, setLog] = useState(null);
     const [searchLog, setSearchLog] = useState(null);
     const [startIndex, setStartIndex] = useState(0);
-    const [endIndex, setEndIndex] = useState(9);
 
     useEffect(() => {
         facade.fetchAllFlights().then(data => {
@@ -133,13 +132,11 @@ function App() {
             return (
                 <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
                     <div className={"row"}>
-                        <div className={"col"}>
-                            <h4><strong>Your ticket</strong></h4>
-                        </div>
+                        <h4><strong>Your ticket</strong></h4>
                         <div className={"row"}>
-                            <div className={"col"}><p>
-                                <strong>Departure:</strong>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}
-                            </p></div>
+                            <div className={"col"}>
+                                <p>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}
+                                </p></div>
                             <p className={"text-right"}><strong>Flight duration:</strong> {selectedFlight.duration}</p>
                         </div>
                     </div>
@@ -178,40 +175,47 @@ function App() {
         if (selectedFlight && !selectedReturnFlight) {
             let singlePrice = selectedFlight.price * numberOfAdults;
             return (
-                <div className={"bg-marge rounded shadow-lg p-5 mb-3"}>
+                <div className={"bg-marge rounded shadow-lg mb-3 container-fluid"}>
                     <div className={"row"}>
-                        <div className={"col"}>
-                            <h4><strong>Your ticket</strong></h4>
+                        <div className={"col-8 p-4"}>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    <strong>{selectedFlight.departureTime.slice(16, 21)} - {selectedFlight.arrivalTime.slice(16, 21)}</strong>
+                                </div>
+                                <div className={"col"}>
+                                    <strong className={"float-right"}>{selectedFlight.flightDuration}</strong>
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col"}>
+                                    {selectedFlight.airline}
+                                </div>
+                                <div className={"col"}>
+                                    <p className={"float-right"}>{selectedFlight.departureAirportCode} - {selectedFlight.arrivalAirportCode}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className={"row"}>
-                        <div className={"col"}><p>
-                            <strong>Departure:</strong>{selectedFlight.airline} {selectedFlight.departureTime.slice(0, 21)}
-                        </p></div>
-                        <div className={"col"}>
-                            <p className={"text-right"}><strong>Flight duration:</strong> {selectedFlight.duration}</p>
+                        <div className={"col-4 pr-4 pt-4 pb-2 rounded-right"} style={{backgroundColor: "grey"}}>
+                            <div className={"row pl-2"}>
+                                <div className={"col"}>
+                                    <div className={"row"}><p>Adults: {numberOfAdults}</p></div>
+                                    <div className={"row"}><p>{numberOfChildren > 0 ? numberOfChildren : ""}</p></div>
+                                    <div className={"row"}><h3><strong>${singlePrice}</strong></h3></div>
+                                    <div className={"row"}>
+                                        <button className={"btn btn-lg btn-block btn-success"}
+                                                onClick={() => {
+                                                    facade.logFlights([{
+                                                        ...selectedFlight,
+                                                        numberOfAdults,
+                                                        numberOfChildren
+                                                    }])
+                                                }}>
+                                            Book
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className={"row"}>
-                        <div className={"col"}>
-                            <p>
-                                <strong>Arrival:</strong>{selectedFlight.airline} {selectedFlight.arrivalTime.slice(0, 21)}
-                            </p>
-                        </div>
-                        <div className={"col"}>
-                            <em>{selectedFlight.flightClass}</em>
-                        </div>
-                        <div className={"col"}>
-                            <h4 className={"text-right"}><strong>Price:</strong> ${singlePrice},-</h4>
-                        </div>
-                    </div>
-                    <div className={"col"}>
-                        <button className={"btn-lg btn-success float-right"}
-                                onClick={() => {
-                                    facade.logFlights([{...selectedFlight, numberOfAdults, numberOfChildren}])
-                                }}>
-                            Book
-                        </button>
                     </div>
                 </div>
                 // {selectedFlight.departure    AirportCode}->{selectedFlight.arrivalAirportCode}
@@ -340,7 +344,8 @@ function App() {
                                                     <h4 className={"bg-marge p-2 rounded shadow-lg"}>Flights
                                                         out</h4>
                                                     <NewFlightsTable flights={flights}
-                                                                     setSelectedFlight={setSelectedFlight}/>
+                                                                     setSelectedFlight={setSelectedFlight}
+                                                                     startIndex={startIndex}/>
                                                 </div>
                                                 <div style={{
                                                     display: "inline-block",
@@ -351,14 +356,16 @@ function App() {
                                                     <h4 className={"bg-marge p-2 rounded shadow-lg"}>Return
                                                         flights</h4>
                                                     <NewFlightsTableReturn returnFlights={returnFlights}
-                                                                           setSelectedReturnFlights={setSelectedReturnFlight}/>
+                                                                           setSelectedReturnFlights={setSelectedReturnFlight}
+                                                                           startIndex={startIndex}/>
                                                 </div>
                                             </div>
                                             :
-                                            <NewFlightsTable flights={flights.splice(startIndex, endIndex)}
-                                                             setSelectedFlight={setSelectedFlight}/>
+                                            <NewFlightsTable flights={flights}
+                                                             setSelectedFlight={setSelectedFlight}
+                                                             startIndex={startIndex}/>
                                         }
-                                        <Pagination startIndex={startIndex} setStartIndex={setStartIndex} endIndex={endIndex} setEndIndex={setEndIndex}/>
+                                        <Pagination startIndex={startIndex} setStartIndex={setStartIndex}/>
                                     </div>
                                 </div>
                                 <div className={"col-2"}>
