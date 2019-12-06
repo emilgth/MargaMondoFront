@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97a74863-7994-455a-a503-3ec31a1122e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Images/image.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlightsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/banners.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/banners.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575035579128</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Ticket looks nice, and other small changes">
+      <created>1575625810623</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1575625810623</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,33 +247,34 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="Added functionality to change number of passengers" />
     <MESSAGE value="MEAGHE" />
-    <option name="LAST_COMMIT_MESSAGE" value="MEAGHE" />
+    <MESSAGE value="Ticket looks nice, and other small changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ticket looks nice, and other small changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="911" y="278" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1575496624869">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="911" y="278" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575496624869" />
-    <state x="43" y="117" key="CommitChangelistDialog2" timestamp="1575623721502">
+    <state x="43" y="117" key="CommitChangelistDialog2" timestamp="1575625809864">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="43" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1575623721502" />
-    <state width="934" height="205" key="GridCell.Tab.0.bottom" timestamp="1575624793280">
+    <state x="43" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1575625809864" />
+    <state width="913" height="203" key="GridCell.Tab.0.bottom" timestamp="1575625821239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="934" height="205" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1575624793280" />
-    <state width="934" height="205" key="GridCell.Tab.0.center" timestamp="1575624793280">
+    <state width="913" height="203" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1575625821239" />
+    <state width="913" height="203" key="GridCell.Tab.0.center" timestamp="1575625821239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="934" height="205" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1575624793280" />
-    <state width="934" height="205" key="GridCell.Tab.0.left" timestamp="1575624793279">
+    <state width="913" height="203" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1575625821239" />
+    <state width="913" height="203" key="GridCell.Tab.0.left" timestamp="1575625821239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="934" height="205" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1575624793279" />
-    <state width="934" height="205" key="GridCell.Tab.0.right" timestamp="1575624793280">
+    <state width="913" height="203" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1575625821239" />
+    <state width="913" height="203" key="GridCell.Tab.0.right" timestamp="1575625821239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="934" height="205" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1575624793280" />
+    <state width="913" height="203" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1575625821239" />
     <state x="38" y="86" width="1858" height="869" key="MergeDialog" timestamp="1575547397849">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -277,10 +287,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1575496667932" />
-    <state x="72" y="244" key="Vcs.Push.Dialog.v2" timestamp="1575623724826">
+    <state x="72" y="244" key="Vcs.Push.Dialog.v2" timestamp="1575625812477">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="72" y="244" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1575623724826" />
+    <state x="72" y="244" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1575625812477" />
     <state x="749" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575623685491">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

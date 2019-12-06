@@ -21,7 +21,7 @@ import {
     RenderClassesCheckboxes
 } from "./checkboxFacade";
 import {PriceSlider, TimeSlider} from "./PriceSlider";
-import {CopenhagenBanner, LondonBanner, ParisBanner} from "./banners";
+import {CopenhagenBanner, FrankfurtBanner, LondonBanner, ParisBanner} from "./banners";
 
 //Welcome to the jungle
 const Welcome = () => {
@@ -399,6 +399,7 @@ function App() {
                                 <div className={"col-2"}>
                                     <LondonBanner/>
                                     <ParisBanner/>
+                                    <FrankfurtBanner/>
                                 </div>
                             </div>
                         </div>

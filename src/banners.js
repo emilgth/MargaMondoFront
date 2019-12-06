@@ -30,3 +30,11 @@ export const CopenhagenBanner = () => {
         </div>
     )
 };
+
+export const FrankfurtBanner = () => {
+    return (
+        <div className={"frankfurt-container rounded shadow-lg mt-3"}>
+            <h1 className={"centered"}>FRANKFURT</h1>
+        </div>
+    )
+};

@@ -117,3 +117,21 @@ width:25%; height:25%; max-height: 25%; max-width: 25%;
   text-shadow:  0 50px #d0142c,  0 -50px #00237d;
   cursor: pointer;
 }
+
+.frankfurt-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px #ff7bac;
+  transition-duration: 500ms;
+  background-image: url("Images/image.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 50vh;
+}
+
+.frankfurt-container:hover {
+  text-shadow:  0 50px #fdba2e,  0 -50px #06050a;
+  color: #c4112f;
+  cursor: pointer;
+}
